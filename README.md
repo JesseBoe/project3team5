@@ -5,3 +5,4 @@ hi - Jesse
 hi -brianda
 hi -Wendy
 hello - craig
+I can't add this automagically
