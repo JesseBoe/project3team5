@@ -1,0 +1,1 @@
+Inside of this folder is where our socketIO server lives.
