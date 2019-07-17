@@ -5,6 +5,7 @@ const app = express();
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
+  console.log("PRODUCTION ALERT");
   app.use(express.static("client/build"));
 }
 
