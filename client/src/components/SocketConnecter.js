@@ -5,7 +5,7 @@ class SocketConnecter extends Component {
 
     connect() {
         console.log("Login!");
-        const socket = openSocket("https://uw-bootcamp-project3.herokuapp.com/:52300");
+        const socket = openSocket("https://uw-bootcamp-project3.herokuapp.com/");
     }
 
     disconnect() {
