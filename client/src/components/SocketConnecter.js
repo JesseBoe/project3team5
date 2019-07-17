@@ -11,6 +11,11 @@ class SocketConnecter extends Component {
         }
     }
 
+    sendMessage() {
+        var tweet = { user: "Jesse", text: "Hello, world!" };
+        this.socket.emit("tweet", tweet);
+    }
+
     disconnect() {
         if (this.socket) {
             console.log("disconnect!");
