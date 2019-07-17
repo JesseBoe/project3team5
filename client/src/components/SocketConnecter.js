@@ -7,11 +7,12 @@ class SocketConnecter extends Component {
     connect() {
         if (!this.socket) {
             console.log("Login!");
-            this.socket = openSocket("https://uw-bootcamp-project3.herokuapp.com/");
+            this.socket = openSocket(window.location.host);
         }
     }
 
     sendMessage() {
+        console.log(window.location.host);
         var tweet = { user: "Jesse", text: "Hello, world!" };
         this.socket.emit("tweet", tweet);
     }
@@ -32,7 +33,7 @@ class SocketConnecter extends Component {
                         <button type="button" onClick={() => this.connect()} className="btn btn-primary">Connect</button>
                     </div>
                     <div className="card">
-                        <button type="button" className="btn btn-warning">Join Room</button>
+                        <button type="button" onClick={() => this.sendMessage()} className="btn btn-warning">Join Room</button>
                     </div>
                     <div className="card">
                         <button type="button" onClick={() => this.disconnect()} className="btn btn-danger">Disconnect</button>
