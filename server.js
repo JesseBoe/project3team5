@@ -3,6 +3,11 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//SocketIO
+const http = require('http');
+const io = require('socket.io')();
+const server = http.createServer();
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION ALERT");
@@ -18,3 +23,17 @@ app.get("*", function(req, res) {
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
+
+//SocketIO
+io.attach(server);
+
+io.on('connection', (socket) => {
+  console.log(`Socket ${socket.id} connected.`);
+
+  socket.on('disconnect', () => {
+    console.log(`Socket ${socket.id} disconnected.`);
+  });
+});
+
+server.listen(PORT);
+console.log("Socket Server is now listening on port: " + PORT);
