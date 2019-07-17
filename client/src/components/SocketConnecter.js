@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import openSocket from "socket.io-client"
 
 class SocketConnecter extends Component {
+    socket;
 
     connect() {
         console.log("Login!");
-        const socket = openSocket("https://uw-bootcamp-project3.herokuapp.com/");
+        socket = openSocket("https://uw-bootcamp-project3.herokuapp.com/");
     }
 
     disconnect() {
         console.log("disconnect!");
+        this.socket.emit("disconnect");
     }
 
     render() {
