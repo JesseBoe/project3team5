@@ -20,7 +20,7 @@ class SocketConnecter extends Component {
     disconnect() {
         if (this.socket) {
             console.log("disconnect!");
-            this.socket.emit("disconnect");
+            this.socket.disconnect();
             this.socket = null;
         }
     }
