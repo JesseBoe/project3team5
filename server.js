@@ -25,7 +25,6 @@ io.on('connection', (socket) => {
     console.log(`Socket ${socket.id} connected.`);
 
     socket.on("tweet", function (tweet) {
-      // we received a tweet from the browser
       console.log(tweet);
     });
 
