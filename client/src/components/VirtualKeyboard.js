@@ -9,40 +9,13 @@ class VirtualKeyboard extends Component {
     alphabet3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
     state = {
         onlyVowels : false,
-        letterEnabled : {
-            A : true,
-            B : true,
-            C: true,
-            D: true,
-            E: true,
-            F: true,
-            G: true,
-            H: true,
-            I: true,
-            J: true,
-            K: true,
-            L: true,
-            M: true,
-            N: true,
-            O: true,
-            P: true,
-            Q: true,
-            R: true,
-            S: true,
-            T: true,
-            U: true,
-            V: true,
-            W: true,
-            X: true,
-            Y: true,
-            Z: true,
-        }
+        letterEnabled : []
     }
 
     disable = (letter) => {
         console.log(this.state[letter]);
         var newLetters = this.state.letterEnabled;
-        newLetters[letter] = false;
+        newLetters.push(letter);
         this.setState({
             onlyVowels : this.state.onlyVowels,
             letterEnabled : newLetters
@@ -55,17 +28,17 @@ class VirtualKeyboard extends Component {
                 <div style={{width:"95%", margin:"auto"}}>
                     <div className="d-flex justify-content-around pt-1">
                         {this.alphabet1.map((letter) => {
-                            return <div onClick={() => {this.disable(letter)}} className={this.state.letterEnabled[letter] ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
+                            return <div onClick={() => {this.disable(letter)}} className={this.state.letterEnabled.indexOf(letter) == -1 ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
                         })}
                     </div>
                     <div className="d-flex justify-content-around">
                         {this.alphabet2.map((letter) => {
-                            return <div onClick={() => { this.disable(letter) }} className={this.state.letterEnabled[letter] ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
+                            return <div onClick={() => { this.disable(letter) }} className={this.state.letterEnabled.indexOf(letter) == -1 ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
                         })}
                     </div>
                     <div className="d-flex justify-content-around pb-1">
                         {this.alphabet3.map((letter) => {
-                            return <div onClick={() => { this.disable(letter) }} className={this.state.letterEnabled[letter] ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
+                            return <div onClick={() => { this.disable(letter) }} className={this.state.letterEnabled.indexOf(letter) == -1 ? "click-item d-flex justify-content-center" : "disabled d-flex justify-content-center"}>{letter}</div>
                         })}
                     </div>
                 </div>
