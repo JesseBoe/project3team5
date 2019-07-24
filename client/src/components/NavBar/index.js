@@ -6,7 +6,7 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <navbar bg="light">
+        <navbar bg="light" className="NavBar">
           <a href="#home" className="Brand">Home Link</a>
         </navbar>
       </div>
