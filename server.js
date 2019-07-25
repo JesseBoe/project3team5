@@ -5,6 +5,8 @@ var io = require('socket.io')(server);
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 
+
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION ALERT");
@@ -21,14 +23,18 @@ server.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
+var sockets = [];
+
 io.on('connection', (socket) => {
     console.log(`Socket ${socket.id} connected.`);
-
-    socket.on("tweet", function (tweet) {
-      console.log(tweet);
-    });
+    sockets.push(socket);
 
     socket.on('disconnect', () => {
         console.log(`Socket ${socket.id} disconnected.`);
     });
+
+    socket.on("SendMessage", (data) => {
+        console.log(data);
+        socket.broadcast.emit("RecieveMessage", data);
+    })
 });
