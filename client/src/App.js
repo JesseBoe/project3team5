@@ -13,7 +13,9 @@ class App extends Component {
   socket = openSocket(window.location.host);
   render() {
     return (
-      <Chat socket={this.socket}/>
+      <div>
+        <Chat socket={this.socket} />
+      </div>
     );
   }
 }
