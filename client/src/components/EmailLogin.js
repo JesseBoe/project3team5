@@ -15,7 +15,7 @@ class EmailLogin extends React.Component {
 
   onLogIn = event => {
     event.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
     this.props.socket.emit("authentication", this.state);
   };
 
