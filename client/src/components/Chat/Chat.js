@@ -73,9 +73,9 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="card ml-4 mt-4" style={{width: "50%"}}>
+            <div className="card mt-2" style={{width: "100%"}}>
                 <div className="card-header text-center bg-light" style={{height: "12px"}}></div>
-                <div className="card-body bg-light" id="chatBody" style={{height: "160px", overflowY: "scroll", padding: "6px 20px"}}>
+                <div className="card-body bg-light" id="chatBody" style={{height: "120px", overflowY: "scroll", padding: "6px 20px"}}>
                     <div className="welcome text-muted">
                         Welcome to the chat room!
                     </div>

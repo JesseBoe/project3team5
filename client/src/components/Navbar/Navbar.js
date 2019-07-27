@@ -25,7 +25,7 @@ class Navbar extends Component {
 
         return (
             <div>
-                <nav className="row d-flex" style={{ backgroundColor: "#1d1135", color: "white", height: "60px", paddingLeft: "35px", paddingRight: "35px", paddingTop: "16px"}}>
+                <nav className="row d-flex" style={{ backgroundColor: "#1d1135", maxWidth:"100%", color: "white", height: "60px", paddingLeft: "35px", paddingRight: "35px", paddingTop: "16px"}}>
                     <span className="d-flex col-8 mb-0"><span>[LOGO]</span></span>
                     {this.state.LoggedIn && 
                     <span className=" d-flex col-2">

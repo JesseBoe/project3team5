@@ -18,12 +18,12 @@ class GameButton extends Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-around mt-4" style= {{width: "50%"}}>
+            <div className="d-flex justify-content-around" style= {{width: "100%"}}>
                 <div onClick={() => { this.Spin(); }} className="rcorners1 d-flex justify-content-center">
                     <span className="unselect" style={{ color: "#ba1e68", fontSize: "28px", cursor: "pointer" }}>SPIN</span>
                 </div>
                 <div onClick={() => { this.Buy(); }} className="rcorners1 d-flex justify-content-center">
-                    <span className="unselect" style={{ color: "#ba1e68", fontSize: "28px", cursor: "pointer" }}>BUY VOWEL</span>
+                    <span className="unselect" style={{ color: "#ba1e68", fontSize: "24px", cursor: "pointer" }}>BUY VOWEL</span>
                 </div>
                 <div onClick={() => { this.Solve(); }} className="rcorners1 d-flex justify-content-center">
                     <span className="unselect" style={{ color: "#ba1e68", fontSize: "28px", cursor: "pointer" }}>SOLVE</span>

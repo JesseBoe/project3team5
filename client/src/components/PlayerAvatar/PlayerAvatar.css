@@ -1,4 +1,4 @@
-.colorChange {
-    background-color: aquamarine !important;
-    filter: hue-rotate(90deg);
+img {
+    max-width:140px;
+    height:auto;
 }
