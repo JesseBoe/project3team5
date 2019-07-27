@@ -1,5 +1,6 @@
 import React from 'react';
 import Letter from './Letter';
+import style from "./style.css"
 
 const Letters = (props) => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

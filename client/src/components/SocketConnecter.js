@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import openSocket from "socket.io-client"
 
-const PORT = process.env.PORT || 3001;
-
 class SocketConnecter extends Component {
     socket = null;
 
     connect() {
         if (!this.socket) {
             console.log("Login!");
-            this.socket = openSocket(window.location.host + ":" + PORT);
+            this.socket = openSocket(window.location.host);
         }
     }
 
