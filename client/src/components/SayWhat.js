@@ -15,6 +15,7 @@ class SayWhat extends Component {
                     <div className="row">
                         <div className="col-6 left">
                             <PlayerAvater/>
+                            <VirtualKeyboard/>
                         </div>
                         <div className="col-6 right">
                             <div style={{position: "absolute", right:130, top: 15}}>
