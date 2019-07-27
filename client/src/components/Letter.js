@@ -1,4 +1,5 @@
 import React from 'react';
+import style from "./style.css"
 
 const Letter = (props) => {
   if ( props.pickedArray.indexOf(props.alpha) > -1 || props.gameStatus > 0 ) {

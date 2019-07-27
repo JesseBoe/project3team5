@@ -1,4 +1,5 @@
 import React from 'react';
+import style from "./style.css"
 
 const Next = (props) => {
   if(props.gameStatus > 0 && props.answerList.length) {
