@@ -10,7 +10,7 @@ import words from './words';
 class game extends Component {
 
     state = {
-        picked: [" "],
+        picked: [""],
         incorrectPicks: 0,
         answerList : {},
         answer : [{word: "hello world", hint : "Common computer programing phrase"}],
@@ -25,16 +25,13 @@ class game extends Component {
         answerList.sort(function () { return 0.5 - Math.random() });
         const answer = answerList.pop();
         answer.word = answer.word.toUpperCase();
-
-        this.addAlphas = this.addAlphas.bind(this);
-        this.nextWord = this.nextWord.bind(this);
     }
 
-    addAlphas(alpha) {
+    addAlphas = (alpha) => {
         let alphaList = this.state.picked;
         alphaList.push(alpha);
         this.setState({ picked: alphaList }, () => {
-            let word = this.state.answer.word.replace(new RegExp('[^' + this.state.picked + ']', 'g'), '-');
+            let word = this.state.answer[0].word.replace(new RegExp('[^' + this.state.picked + ']', 'g'), '-');
             if (word.indexOf('-') === -1) {
                 this.setState({
                     gameStatus: 1,
@@ -47,7 +44,7 @@ class game extends Component {
         // will make the process slow. In the current setup we add regex for every
         // alphabet added increasing the number of cases. Find optimal way.
 
-        if (this.state.answer.word.indexOf(alpha) === -1) {
+        if (this.state.answer[0].word.indexOf(alpha) === -1) {
             this.setState({ incorrectPicks: (this.state.incorrectPicks + 1) }, () => {
                 if (this.state.incorrectPicks === 6) {
                     this.setState({
@@ -59,7 +56,7 @@ class game extends Component {
         }
     }
 
-    nextWord() {
+    nextWord = () => {
         const answer = this.state.answerList.pop();
         answer.word = answer.word.toUpperCase();
         this.setState({
@@ -88,7 +85,7 @@ class game extends Component {
                         answer={this.state.answer}
                         pickedArray={this.state.picked}
                     />
-                    <div className='info'>(Hint: All words are from movies)</div>
+                    <div className='info'>(Hint: Quotes are from movies)</div>
                     <Letters
                         pickedArray={this.state.picked}
                         gameStatus={this.state.gameStatus}

@@ -2,8 +2,8 @@ import React from 'react';
 import style from "./style.css"
 
 const Answer = (props) => {
-  let answer = props.answer.word;
-  const hint = props.answer.hint;
+  let answer = props.answer[0].word;
+  const hint = props.answer[0].hint;
   let pick = props.pickedArray;
   
   let guess = pick.join('');
