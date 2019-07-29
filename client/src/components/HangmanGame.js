@@ -76,7 +76,7 @@ class HangmanGame extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container"><br />
         <div className="title">Hangman Game</div>
         <div className="figureWrapper">
           <Hangman incorrectPicks={this.state.incorrectPicks} />
