@@ -2,6 +2,7 @@
     border: 1px red solid;
 } */
 #canvasContainer {
+    background-color: #7649fe;
     position: relative;
     width: 500px;
 }
@@ -26,7 +27,7 @@
     font-weight: 800;
 }
 .container {
-    background-color: #7649fe;
+    background-color: hsl(66, 87%, 84%);
 }
 .spacer {
     margin-top: 48px;

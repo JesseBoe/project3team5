@@ -4,7 +4,6 @@ import SocketConnector from "./components/SocketConnecter";
 import HangmanGame from "./components/HangmanGame";
 import Login from "./components/Login";
 import Wheel from "./components/Wheel";
-// import Winwheel from "./components/Winwheel";
 
 //const localhostSocket = io.connect("http://localhost:3000");
 const PORT = process.env.PORT || 3001;
