@@ -65,6 +65,7 @@ class Wheel extends Component {
         });
 
         function spinWheel() {
+            console.log("spinWheel() is receiving function calls");
             theWheel.rotationAngle = (theWheel.rotationAngle % 360); 
             theWheel.startAnimation();
         }
@@ -90,10 +91,10 @@ class Wheel extends Component {
                     <img id="prizePointer" src={require('../images/basic_pointer.png')} alt="Wheel Pointer" />
                 </div>
                 <div id="spinButton" className="spacer">
-                    <button class="btn btn-primary spinBtn" onClick="spinWheel();">Spin the Wheel</button>
+                    <button className="btn btn-primary spinBtn" onClick="spinWheel">Spin the Wheel</button>
                 </div>
             </div>
-        );
+        )
     }
 }
 
