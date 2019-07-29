@@ -1,3 +1,5 @@
+import { Tween, Timeline } from 'react-gsap';
+
 function Winwheel(options, drawWheel)
 {
     let defaultOptions = {

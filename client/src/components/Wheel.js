@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Tween, Timeline } from 'react-gsap';
 import Winwheel from './Winwheel';
 
 class Wheel extends Component {
