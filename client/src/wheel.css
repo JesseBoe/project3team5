@@ -1,6 +1,6 @@
-/* * {
+* {
     border: 1px red solid;
-} */
+}
 #canvasContainer {
     position: relative;
     width: 500px;
@@ -9,7 +9,6 @@
     background-image: url(./images/wheelbg.png);
     background-repeat: no-repeat;   
     background-position: center;  
-    background: yellow; 
     font-family: 'Roboto Slab', serif;
     width: 500px;                  
     height: 500px;
@@ -30,10 +29,11 @@
     background-color: #7649fe;
 }
 .spacer {
-    margin-top: 36px;
+    margin-top: 48px;
+    padding-bottom: 48px;
 }
 .spinBtn {
-    width: 75%;
+    width: 300px;
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
 }

@@ -82,11 +82,16 @@ class Wheel extends Component {
     }
     render() {
         return (
-            <div id="canvasContainer">
-                <canvas id="canvas" width="500" height="500">
-                    Canvas not supported, use another browser.
-                </canvas>
-                <img id="prizePointer" src="../images/basic_pointer.png" alt="V" />
+          <div className="Container container">
+                <div id="canvasContainer">
+                    <canvas id="canvas" width="500" height="500">
+                        Canvas not supported, use another browser.
+                    </canvas>
+                    <img id="prizePointer" src={require('../images/basic_pointer.png')} alt="Wheel Pointer" />
+                </div>
+                <div id="spinButton" className="spacer">
+                    <button class="btn btn-primary spinBtn" onClick="spinWheel();">Spin the Wheel</button>
+                </div>
             </div>
         );
     }
