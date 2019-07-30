@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import Chat from "./Chat/Chat";
 import GameButton from "./GameButton/GameButton";
 import Navbar from "./Navbar/Navbar";
-import PlayerAvater from "./PlayerAvatar/PlayerAvatar"
 import Timer from "./Timer/Timer"
 import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard"
+import PuzzleBox from "./PuzzleBox/PuzzleBox"
+import Hint from "./Hint/Hint"
+import PlayerSection from "./PlayerAvatar/PlayerSection"
 
 class SayWhat extends Component {
     render() {
@@ -14,7 +16,9 @@ class SayWhat extends Component {
                 <div className="container" style={{maxWidth : "98%"}}>
                     <div className="row">
                         <div className="col-6 left">
-                            <PlayerAvater/>
+                            <PuzzleBox puzzle="___ ___ ___ ____!"/>
+                            <Hint/>
+                            <PlayerSection/>
                             <VirtualKeyboard/>
                         </div>
                         <div className="col-6 right">

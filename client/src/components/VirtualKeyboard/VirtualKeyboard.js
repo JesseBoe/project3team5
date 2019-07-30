@@ -24,7 +24,7 @@ class VirtualKeyboard extends Component {
 
     render() {
         return (
-            <div className = "Card Keyboard" style={{width: "100%"}}>
+            <div className = "Card Keyboard" style={{width: "100%", overflowY: "hidden"}}>
                 <div style={{width:"95%", margin:"auto"}}>
                     <div className="d-flex justify-content-around pt-1">
                         {this.alphabet1.map((letter) => {
