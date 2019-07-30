@@ -1,0 +1,19 @@
+#head {
+    visibility: hidden;
+}
+#leftArm {
+  visibility: hidden;
+}
+#rightArm {
+  visibility: hidden;
+}
+#body {
+  visibility: hidden;
+}
+#leftLeg {
+  visibility: hidden;
+}
+#rightLeg {
+  visibility: hidden;
+}
+

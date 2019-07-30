@@ -3,11 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import openSocket from "socket.io-client"
 
-import GameButton from "./components/GameButton/GameButton"
-import NavBar from "./components/Navbar/Navbar"
-import Chat from "./components/Chat/Chat.js";
-import PlayerAvatar from "./components/PlayerAvatar/PlayerAvatar";
-import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
+import Login from "./components/Login";
 import SayWhat from "./components/SayWhat";
 
 class App extends Component {
@@ -15,6 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {/* <Login socket={this.socket}></Login> */}
         <SayWhat socket={this.socket}/>
       </div>
     );
