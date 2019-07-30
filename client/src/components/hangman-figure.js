@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import style from "./style.css"
 
 //Import all images
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));

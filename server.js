@@ -52,6 +52,11 @@ if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION ALERT");
   app.use(express.static("client/build"));
 }
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Add routes, both API and view
+app.use(routes);
 
 server.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

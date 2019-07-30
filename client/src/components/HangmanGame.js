@@ -6,6 +6,7 @@ import Letters from "./Letters";
 import Next from "./Next";
 import Streak from "./streak";
 import words from "./words";
+import style from "./style.css"
 
 class HangmanGame extends Component {
   constructor(props) {
@@ -87,7 +88,7 @@ class HangmanGame extends Component {
             answer={this.state.answer.word}
           />
           <Answer answer={this.state.answer} pickedArray={this.state.picked} />
-          <div className="info">(Hint: All words are from movies)</div>
+          <div className="info">(Hint: Quotes are from movies)</div>
           <Letters
             pickedArray={this.state.picked}
             gameStatus={this.state.gameStatus}
