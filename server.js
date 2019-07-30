@@ -13,7 +13,7 @@ require("./config/passport");
 const mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
 const mongoOpts = { useNewUrlParser: true };
-const mongoUrl = "mongodb://localhost/socketio-react";
+const mongoUrl = process.env.MONGODB_URI || "mongodb://localhost/socketio-react";
 io.use((socket, next) => {
   mongoose
     .connect(mongoUrl, mongoOpts)
