@@ -8,13 +8,14 @@ import NavBar from "./components/Navbar/Navbar"
 import Chat from "./components/Chat/Chat.js";
 import PlayerAvatar from "./components/PlayerAvatar/PlayerAvatar";
 import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
+import SayWhat from "./components/SayWhat";
 
 class App extends Component {
   socket = openSocket(window.location.host);
   render() {
     return (
       <div>
-        <PlayerAvatar/>
+        <SayWhat socket={this.socket}/>
       </div>
     );
   }
