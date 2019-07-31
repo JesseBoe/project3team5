@@ -1,6 +1,6 @@
 // import { Tween, Timeline } from 'react-gsap';
 
-function Winwheel(options, drawWheel)
+function Winwheel(options, drawWheel=true);
 {
     let defaultOptions = {
         'canvasId'          : 'canvas',     // Id of the canvas which the wheel is to draw on to.

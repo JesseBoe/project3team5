@@ -17,8 +17,8 @@
 }
 #prizePointer {
     position: absolute;
-    left: 240px;
-    top: 10px;
+    left: 225px;
+    top: 5px;
     z-index: 999;
 }
 .player {
@@ -31,8 +31,7 @@
     background-color: gray;
 }
 .spacer {
-    background-color: #7649fe;
-    margin-top: 48px;
+    margin-top: 24px;
     padding-bottom: 48px;
 }
 .spinBtn {

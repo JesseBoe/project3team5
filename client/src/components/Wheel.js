@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Tween, Timeline } from 'react-gsap';
 import Winwheel from './Winwheel';
 
 class Wheel extends Component {
     constructor() {
         super();
-        let theWheel = new Winwheel( {
+        this.theWheel = null;;
+    }
+    componentDidMount() {
+        this.theWheel = new Winwheel( {
             'canvasId'    : 'canvas',
             'lineWidth'   : 3,
             'numSegments' : 18,
@@ -26,7 +28,7 @@ class Wheel extends Component {
                 'type'     : 'spinToStop',
                 'duration' : 3,
                 'spins'    : 9,
-                'callbackFinished' : 'spinResult()'
+                'callbackFinished' : this.spinResult
             },
             'segments'    :
             [   
@@ -51,8 +53,8 @@ class Wheel extends Component {
             ],
             'pointerGuide' :  
             {
-                'display'     : false,
-                'strokeStyle' : '#ff3300',
+                'display'     : true,
+                'strokeStyle' : 'yellow',
                 'lineWidth'   : 3
             },
             'pins' : 
@@ -64,22 +66,21 @@ class Wheel extends Component {
                 'strokeStyle' : 'white'
             }
         });
+    }
 
-        function spinWheel() {
-            console.log("spinWheel() is receiving function calls");
-            theWheel.rotationAngle = (theWheel.rotationAngle % 360); 
-            theWheel.startAnimation();
-        }
+    spinWheel = () => {
+        this.theWheel.rotationAngle = (this.theWheel.rotationAngle % 360); 
+        this.theWheel.startAnimation();
+    }
 
-        function spinResult() {
-            let prizeSegment = theWheel.getIndicatedSegment();
-            if (prizeSegment.text === '  BANKRUPT') {
-                alert("OMG. You've gone Bankrupt!");
-            } else if (prizeSegment.text === 'BANKRUPT') {
-                alert("You've lost your turn ");
-            } else {
-                alert("You have won " + prizeSegment.text);       
-            }
+    spinResult = () => {
+        let prizeSegment = this.theWheel.getIndicatedSegment();
+        if (prizeSegment.text === '  BANKRUPT') {
+            alert("OMG. You've gone Bankrupt!");
+        } else if (prizeSegment.text === 'BANKRUPT') {
+            alert("You've lost your turn ");
+        } else {
+            alert("You have won " + prizeSegment.text);       
         }
     }
     render() {
@@ -92,11 +93,11 @@ class Wheel extends Component {
                     <img id="prizePointer" src={require('../images/basic_pointer.png')} alt="Wheel Pointer" />
                 </div>
                 <div id="spinButton" className="spacer">
-                    <button className="btn btn-primary spinBtn" onClick="spinWheel">Spin the Wheel</button>
+                    <button className="btn btn-primary spinBtn" onClick={this.spinWheel}>Spin the Wheel</button>
                 </div>
             </div>
         )
     }
 }
-
+// theWheel.draw();
 export default Wheel;
