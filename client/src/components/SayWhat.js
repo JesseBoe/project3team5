@@ -31,7 +31,7 @@ class SayWhat extends Component {
                             </div>
                             <div style={{marginTop: "420px"}}>
                                 <GameButton />
-                                <Chat />
+                                <Chat socket={this.props.socket}/>
                             </div>
                         </div>
                     </div>
