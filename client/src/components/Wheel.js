@@ -16,7 +16,7 @@ class Wheel extends Component {
             'repeat'       : 0,
             'textAlignment'  : 'center',
             'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
-            'textFontFamily'  : 'verdana',     // Monospace font best for vertical and curved.
+            'textFontFamily'  : 'Roboto Slab',     // Monospace font best for vertical and curved.
             'textFontSize'    : 24,
             'outerRadius'  : 220, 
             'centerX'     : 250,    
