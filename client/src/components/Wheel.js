@@ -17,34 +17,34 @@ class Wheel extends Component {
             'textAlignment'  : 'center',
             'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
             'textFontFamily'  : 'Roboto Slab',     // Monospace font best for vertical and curved.
-            'textFontSize'    : 24,
-            'outerRadius'  : 220, 
+            'textFontSize'    : 18,
+            'outerRadius'  : 175, 
             'centerX'     : 250,    
             'centerY'     : 255,
             'rotationAngle'   : 0, 
-            'innerRadius'   : 75,  
+            'innerRadius'   : 60,  
             'animation' :
             {
                 'type'     : 'spinToStop',
                 'duration' : 3,
-                'spins'    : 9,
+                'spins'    : 10,
                 'callbackFinished' : this.spinResult
             },
             'segments'    :
             [   
-                {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+                {'fillStyle' : '#000000', 'textFontSize' : 12, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
                 {'fillStyle' : '#7649fe', 'text' : '500'},
                 {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '800'}, 
                 {'fillStyle' : '#5643fd', 'text' : '600'},
                 {'fillStyle' : '#ba1e68', 'text' : '300'},
                 {'fillStyle' : '#1d1135', 'textFillStyle' : '#ffffff', 'text' : '400'},
-                {'fillStyle' : '#ffffff', 'textFontSize' : 14, 'text' : ' LOSE TURN'},
+                {'fillStyle' : '#ffffff', 'textFontSize' : 12, 'text' : ' LOSE TURN'},
                 {'fillStyle' : '#7649fe', 'text' : '900'},
                 {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '700'}, 
                 {'fillStyle' : '#5643fd', 'text' : '600'},
                 {'fillStyle' : '#ba1e68', 'text' : '800'},
                 {'fillStyle' : '#1d1135', 'textFillStyle' : '#ffffff', 'text' : '500'},
-                {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+                {'fillStyle' : '#000000', 'textFontSize' : 12, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
                 {'fillStyle' : '#7649fe', 'text' : '1000'}, 
                 {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '400'},
                 {'fillStyle' : '#5643fd', 'text' : '700'},
@@ -59,7 +59,7 @@ class Wheel extends Component {
             },
             'pins' : 
             {
-                'number'      : 36,
+                'number'      : 18,
                 'outerRadius' : 3,
                 'margin'      : 5,
                 'fillStyle'   : 'black',
