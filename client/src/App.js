@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import openSocket from "socket.io-client"
+import Login from "./components/Login";
+import Wheel from "./components/Wheel";
 
-import GameButton from "./components/GameButton/GameButton"
-import NavBar from "./components/Navbar/Navbar"
-import Chat from "./components/Chat/Chat.js";
-import PlayerAvatar from "./components/PlayerAvatar/PlayerAvatar";
-import VirtualKeyboard from "./components/VirtualKeyboard/VirtualKeyboard";
+
 import SayWhat from "./components/SayWhat";
 
 class App extends Component {
@@ -15,6 +13,8 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Login socket={socket}></Login>
+        <Wheel />
         <SayWhat socket={this.socket}/>
       </div>
     );
