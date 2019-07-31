@@ -5,7 +5,9 @@ const bcrypt = require("bcryptjs");
 
 const UserSchema = new Schema({
     username: { type: String, required: true, unique: true },
-    passwordHash: { type: String, required: true }
+    passwordHash: { type: String, required: true },
+    histScore: { type: Number },
+    gameScore: { type: Number }
 });
 
 UserSchema.plugin(uniqueValidator);
