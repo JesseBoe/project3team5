@@ -18,7 +18,7 @@ class GameButton extends Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-around" style= {{width: "100%"}}>
+            <div className="d-flex justify-content-around " style={{ width: "100%", position: "relative"}}>
                 <div onClick={() => { this.Spin(); }} className="rcorners1 d-flex justify-content-center">
                     <span className="unselect" style={{ color: "#ba1e68", fontSize: "28px", cursor: "pointer" }}>SPIN</span>
                 </div>

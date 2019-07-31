@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import openSocket from "socket.io-client"
 import Login from "./components/Login";
-import Wheel from "./components/Wheel";
+import Wheel from "./components/Wheel/Wheel";
 
 
 import SayWhat from "./components/SayWhat";
@@ -13,11 +13,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Login socket={socket}></Login>
-        <Wheel />
+        {/* <Login socket={this.socket}></Login> */}
         <SayWhat socket={this.socket}/>
       </div>
-    );
+    )
   }
 }
 

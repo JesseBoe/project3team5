@@ -7,6 +7,7 @@ import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard"
 import PuzzleBox from "./PuzzleBox/PuzzleBox"
 import Hint from "./Hint/Hint"
 import PlayerSection from "./PlayerAvatar/PlayerSection"
+import Wheel from "./Wheel/Wheel";
 
 class SayWhat extends Component {
     render() {
@@ -24,6 +25,9 @@ class SayWhat extends Component {
                         <div className="col-6 right">
                             <div style={{position: "absolute", right:130, top: 15}}>
                                 <Timer/>
+                            </div>
+                            <div style={{position: "absolute"}}>
+                                <Wheel/>
                             </div>
                             <div style={{marginTop: "420px"}}>
                                 <GameButton />
