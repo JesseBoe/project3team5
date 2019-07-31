@@ -35,12 +35,15 @@ class SocketConnecter extends Component {
                         <button type="button" onClick={() => this.connect()} className="btn btn-primary">Connect</button>
                     </div>
                     <div className="card">
-                        <button type="button" onClick={() => this.sendMessage()} className="btn btn-warning">Send Message</button>
+                        <button type="button" className="btn btn-warning">Nothing</button>
                     </div>
                     <div className="card">
                         <button type="button" onClick={() => this.disconnect()} className="btn btn-danger">Disconnect</button>
                     </div>
                 </div>
+                <navbar>
+
+                </navbar>
             </div>
         );
     }

@@ -2,12 +2,11 @@
     border: 1px red solid;
 } */
 #canvasContainer {
-    background-color: #7649fe;
     position: relative;
     width: 500px;
 }
 #canvas {
-    background-image: url(./images/wheelbg.png);
+    background-image: url(../../images/wheelbg.png);
     background-repeat: no-repeat;   
     background-position: center;  
     font-family: 'Roboto Slab', serif;
@@ -25,17 +24,4 @@
     font-family: 'Roboto Slab', serif;
     font-size: 36px;
     font-weight: 800;
-}
-
-.container {
-    background-color: gray;
-}
-.spacer {
-    margin-top: 24px;
-    padding-bottom: 48px;
-}
-.spinBtn {
-    width: 300px;
-    font-family: 'Roboto Slab', serif;
-    font-size: 20px;
 }

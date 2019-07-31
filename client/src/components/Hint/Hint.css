@@ -1,0 +1,8 @@
+.hint {
+  border-radius: 10px;
+  border: 2px solid #ba1e68;
+  background: #1d1135;
+  padding: 10px; 
+  height: 60px;
+  width: 100%;
+}

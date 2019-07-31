@@ -1,26 +1,22 @@
 import React, { Component } from "react";
-import io from "socket.io-client";
-import SocketConnector from "./components/SocketConnecter";
-import HangmanGame from "./components/HangmanGame";
+import logo from "./logo.svg";
+import "./App.css";
+import openSocket from "socket.io-client"
 import Login from "./components/Login";
-import Wheel from "./components/Wheel";
+import Wheel from "./components/Wheel/Wheel";
 
-//const localhostSocket = io.connect("http://localhost:3000");
-const PORT = process.env.PORT || 3001;
-// console.log("http://" + window.location.hostname + ":" + PORT);
-const localhostSocket = io.connect("http://" + window.location.hostname + ":" + PORT);
-// console.log(Winwheel + " app.js - Client")
+
+import SayWhat from "./components/SayWhat";
 
 class App extends Component {
- 
+  socket = openSocket(window.location.host);
   render() {
     return (
-      <Login socket={localhostSocket}>
-        <SocketConnector />
-        <Wheel />
-        <HangmanGame />
-      </Login>
-    );
+      <div>
+        {/* <Login socket={this.socket}></Login> */}
+        <SayWhat socket={this.socket}/>
+      </div>
+    )
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Winwheel from './Winwheel';
+import Style from './wheel.css'
 
 class Wheel extends Component {
     constructor() {
@@ -85,16 +86,16 @@ class Wheel extends Component {
     }
     render() {
         return (
-          <div className="Container container">
+          <div>
                 <div id="canvasContainer">
                     <canvas id="canvas" width="500" height="500">
                         Canvas not supported, use another browser.
                     </canvas>
-                    <img id="prizePointer" src={require('../images/basic_pointer.png')} alt="Wheel Pointer" />
+                    <img id="prizePointer" src={require('../../images/basic_pointer.png')} alt="Wheel Pointer" />
                 </div>
-                <div id="spinButton" className="spacer">
+                {/* <div id="spinButton" className="spacer">
                     <button className="btn btn-primary spinBtn" onClick={this.spinWheel}>Spin the Wheel</button>
-                </div>
+                </div> */}
             </div>
         )
     }
