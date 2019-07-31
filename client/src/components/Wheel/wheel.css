@@ -1,6 +1,6 @@
-* {
+/* * {
     border: 1px red solid;
-}
+} */
 #canvasContainer {
     position: relative;
     width: 400px;
