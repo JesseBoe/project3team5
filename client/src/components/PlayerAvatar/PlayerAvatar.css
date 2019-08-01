@@ -1,4 +1,17 @@
 img {
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    user-drag: none;    
+}
+
+.robot {
     max-width:140px;
     height:auto;
+}
+
+.unselect {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }

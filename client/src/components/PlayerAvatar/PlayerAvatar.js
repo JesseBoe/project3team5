@@ -17,7 +17,7 @@ class PlayerAvatar extends Component {
     
     state = {
         RobotImage : "01",
-        RobotAntenna : "01",
+        RobotAntenna : "02",
         RobotColor : "Red",
     }
 
@@ -44,12 +44,12 @@ class PlayerAvatar extends Component {
     
     render() {
         return(
-            <div style={{position: "relative", width:"140px", height:"140px", left: "0", top: "0" }}>
+            <div className="unselect" style={{position: "relative", width:"140px", height:"140px", left: "0", top: "0" }}>
                 <span style={{width: "140px"}}></span>
-                <img className="colorChange" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + this.colorToRoation(this.state.RobotColor) + "deg)" }} src={images["Robot-" + this.state.RobotImage + "_b.png"]}></img>
-                <img className="colorChange" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + this.colorToRoation(this.state.RobotColor) + "deg)" }} src={images["Antenna-" + this.state.RobotAntenna + "_b.png"]}></img>
-                <img style={{ position: "absolute", left: "0", top: "0" }} src={images["Robot-" + this.state.RobotImage + ".png"]}></img>
-                <img style={{ position: "absolute", left: "0", top: "0" }} src={images["Antenna-" + this.state.RobotAntenna + ".png"]}></img>
+                <img className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + this.colorToRoation(this.state.RobotColor) + "deg)" }} src={images["Robot-" + this.state.RobotImage + "_b.png"]}></img>
+                <img className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + this.colorToRoation(this.state.RobotColor) + "deg)" }} src={images["Antenna-" + this.state.RobotAntenna + "_b.png"]}></img>
+                <img className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Robot-" + this.state.RobotImage + ".png"]}></img>
+                <img className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Antenna-" + this.state.RobotAntenna + ".png"]}></img>
             </div>
         ) 
     }

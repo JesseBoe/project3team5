@@ -4,7 +4,7 @@ import PlayerAvatar from "./PlayerAvatar"
 class PlayerSection extends Component {
     render() {
         return(
-            <div>
+            <div className="d-flex justify-content-around">
                 <span style={{ display: "inline-block" }}>
                     <PlayerAvatar />
                 </span>
