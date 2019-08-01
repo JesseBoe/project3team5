@@ -1,8 +1,6 @@
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const User = require('../db/models/user')
 
-console.log("google working")
-
 const strategy = new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_CLIENT_ID,
@@ -30,7 +28,7 @@ const strategy = new GoogleStrategy(
                 // if no user in our db, create a new user with that googleId
                 console.log('====== PRE SAVE ======')
                 console.log(id)
-                console.log(profile)
+                console.log(name.givenName + name.familyName + photos);
                 console.log('====== post save ....')
                 const newGoogleUser = new User({
                     'google.googleId': id,
