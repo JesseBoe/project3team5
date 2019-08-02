@@ -23,7 +23,6 @@ class Letter extends Component {
             </span>;
         }
         else {
-            console.log("Yo");
             display = <span id={this.props.keyid} style={{opacity: 0}} className="anim3 letter">
                 {this.props.letter}
             </span>;

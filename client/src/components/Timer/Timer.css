@@ -7,8 +7,8 @@
 .resize {
     width: 128px;
     height: 128px;
-    position: fixed;
-    border: 5px solid rgb(0, 122, 159)!important;
+    position: absolute;
+    border: 5px solid #ba1e68!important;
     transform: translate(-50%, -50%);
 }
 

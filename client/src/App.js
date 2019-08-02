@@ -4,10 +4,12 @@ import "./App.css";
 import openSocket from "socket.io-client"
 import Login from "./components/Login/Login";
 import Wheel from "./components/Wheel/Wheel";
-
+import AvatarSetter from "./components/PlayerAvatar/AvatarSetter"
 
 import SayWhat from "./components/SayWhat";
 console.log(window.location.host);
+
+
 class App extends Component {
   socket = openSocket(window.location.host);
   

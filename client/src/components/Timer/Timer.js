@@ -64,9 +64,9 @@ class Timer extends Component {
     render(){
         return(
             <div className="offset">
-                <div id="circle" className={"border border-info rounded-circle resize"}>
+                <div id="circle" className={"border border-info rounded-circle resize"} style={{ backgroundColor: "#1d1135"}}>
                 </div>
-                <div className={"counter play" + this.state.Extra} id="timer" onClick={() => { this.toggleTimer() }} style={{ fontSize: "64px" }}>
+                <div className={"counter play" + this.state.Extra} id="timer" onClick={() => { this.toggleTimer() }} style={{ color: "#ba1e68", fontSize: "64px" }}>
                             {this.state.TurnTime}
                 </div>
             </div>
