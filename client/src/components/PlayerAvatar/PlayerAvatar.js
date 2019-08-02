@@ -8,9 +8,6 @@ function importAll(r) {
     return images;
 }
 
-
-
-
 class PlayerAvatar extends Component {
 
     componentDidMount() {
@@ -21,12 +18,6 @@ class PlayerAvatar extends Component {
         RobotImage : "01",
         RobotAntenna : "01",
         RobotColor : "Red",
-    }
-
-    handleChange = event => {
-        this.setState( {
-            RobotImage : event.target.value
-        })
     }
 
     colorToRoation = (color) => {
