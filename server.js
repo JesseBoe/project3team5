@@ -12,24 +12,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
 server.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
-
-io.on('connection', (socket) => {
-    console.log(`Socket ${socket.id} connected.`);
-
-    socket.on("tweet", function (tweet) {
-      console.log(tweet);
-    });
-
-    socket.on('disconnect', () => {
-        console.log(`Socket ${socket.id} disconnected.`);
-    });
 });
