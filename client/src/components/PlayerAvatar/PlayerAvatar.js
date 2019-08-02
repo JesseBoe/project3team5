@@ -9,6 +9,8 @@ function importAll(r) {
 }
 
 
+
+
 class PlayerAvatar extends Component {
 
     componentDidMount() {
@@ -17,8 +19,14 @@ class PlayerAvatar extends Component {
     
     state = {
         RobotImage : "01",
-        RobotAntenna : "02",
+        RobotAntenna : "01",
         RobotColor : "Red",
+    }
+
+    handleChange = event => {
+        this.setState( {
+            RobotImage : event.target.value
+        })
     }
 
     colorToRoation = (color) => {
@@ -43,6 +51,8 @@ class PlayerAvatar extends Component {
     }
     
     render() {
+
+
         return(
             <div className="unselect" style={{position: "relative", width:"140px", height:"140px", left: "0", top: "0" }}>
                 <span style={{width: "140px"}}></span>

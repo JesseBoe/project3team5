@@ -15,3 +15,35 @@ img {
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
 }
+
+.arrow {
+    cursor: pointer;
+    -moz-animation: eyecatch .4s infinite;
+    -webkit-animation: eyecatch .4s infinite;
+    -o-animation: eyecatch .4s infinite;
+    animation: eyecatch .4s infinite;
+    opacity: .65;
+    transition: 0.3s;
+}
+
+.arrow:hover {
+    opacity: 1;
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+     animation-play-state: paused;
+}
+
+@keyframes eyecatch {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -7,6 +7,7 @@ import Wheel from "./components/Wheel/Wheel";
 
 
 import SayWhat from "./components/SayWhat";
+import AvatarSetter from "./components/PlayerAvatar/AvatarSetter"
 
 class App extends Component {
   socket = openSocket(window.location.host);
