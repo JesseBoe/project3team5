@@ -4,6 +4,7 @@ import "./App.css";
 import openSocket from "socket.io-client"
 import Login from "./components/Login";
 import Wheel from "./components/Wheel/Wheel";
+import HangmanGame from "./components/HangmanGame";
 
 
 import SayWhat from "./components/SayWhat";
@@ -16,6 +17,8 @@ class App extends Component {
       <div>
         {/* <Login socket={this.socket}></Login> */}
         <SayWhat socket={this.socket}/>
+        <HangmanGame/>
+
       </div>
     )
   }

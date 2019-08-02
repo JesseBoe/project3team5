@@ -3,6 +3,7 @@ import Hangman from "./hangman-figure";
 import Answer from "./Answer";
 import Output from "./Output";
 import Letters from "./Letters";
+import VirtualKeyboard from "./VirtualKeyboard/VirtualKeyboard";
 import Next from "./Next";
 import Streak from "./streak";
 import words from "./words";
@@ -88,12 +89,14 @@ class HangmanGame extends Component {
           />
           <Answer answer={this.state.answer} pickedArray={this.state.picked} />
           <div className="info">(Hint: All words are from movies)</div>
-          <Letters
+          /* <Letters
             pickedArray={this.state.picked}
             gameStatus={this.state.gameStatus}
             addAlphas={this.addAlphas}
-          />
-          <Streak streak={this.state.streak} />
+          /> */
+          {/* <VirtualKeyboard /> */}
+          {/* <Streak streak={this.state.streak} /> */}
+          
           <Next
             gameStatus={this.state.gameStatus}
             answerList={this.state.answerList}

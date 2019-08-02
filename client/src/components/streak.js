@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Output = (props) => {
+const streak = (props) => {
 
   return (
     <div className='streak'>
@@ -10,4 +10,4 @@ const Output = (props) => {
   );
 };
 
-export default Output;
+export default streak;

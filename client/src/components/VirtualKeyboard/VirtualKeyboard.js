@@ -7,6 +7,7 @@ class VirtualKeyboard extends Component {
     alphabet1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
     alphabet2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
     alphabet3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+    
     state = {
         onlyVowels : false,
         letterEnabled : []
