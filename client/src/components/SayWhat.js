@@ -10,6 +10,17 @@ import PlayerSection from "./PlayerAvatar/PlayerSection"
 import Wheel from "./Wheel/Wheel";
 
 class SayWhat extends Component {
+
+    spinWheel = () => {
+        console.log("SpinWheel");
+    }
+    buyVowel = () => {
+        console.log("BuyVowel");
+    }
+    solve = () => {
+        console.log("Solve");
+    }
+
     render() {
         return(
             <div>
@@ -41,7 +52,7 @@ class SayWhat extends Component {
                                 <Wheel/>
                             </div>
                             <div style={{marginTop: "0px"}}>
-                                <GameButton />
+                                <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve}/>
                                 <Chat socket={this.props.socket}/>
                             </div>
                         </div>

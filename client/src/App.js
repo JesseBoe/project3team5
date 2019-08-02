@@ -15,7 +15,8 @@ class App extends Component {
     return (
       <div>
         {/* <Login socket={this.socket}></Login> */}
-        <SayWhat socket={this.socket}/>
+        {/* <SayWhat socket={this.socket}/> */}
+        <AvatarSetter/>
       </div>
     )
   }
