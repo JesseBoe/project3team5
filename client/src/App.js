@@ -8,6 +8,12 @@ import Wheel from "./components/Wheel/Wheel";
 import SayWhat from "./components/SayWhat";
 import AvatarSetter from "./components/PlayerAvatar/AvatarSetter"
 
+import players from "./pages/players";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NoMatch from "./pages/NoMatch";
+import playerDetail from "./pages/playerDetail";
+import home from "./pages/home";
+
 console.log(window.location.host);
 
 class App extends Component {
@@ -17,7 +23,13 @@ class App extends Component {
     return (
       <div>
         <Login>
-        {/* <Login socket={this.socket}></Login> */}
+        <Router>
+        <Switch> 
+        <Route exact path="/" component={home} />
+          <Route exact path="/players" component={players} />
+          <Route exact path="/players/:id" component={playerDetail} />
+          </Switch>
+        </Router>
         <SayWhat socket={this.socket}/>
         </Login>
       </div>
