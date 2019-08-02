@@ -53,3 +53,8 @@ a {
   height: 37px;
   display: inline-block;
  }
+
+ body {
+   background-color: #69537d;
+   overflow-x: hidden;
+ }

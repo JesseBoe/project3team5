@@ -4,7 +4,7 @@
 #canvasContainer {
     position: relative;
     width: 400px;
-    background-color: lightgray;
+    /* background-color: lightgray; */
 }
 #canvas {
     background-image: url(../../images/wheelbg.png);
