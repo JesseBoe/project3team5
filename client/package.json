@@ -2,7 +2,6 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
     "gsap": "^2.1.3",
     "react-dom": "^16.8.6",
