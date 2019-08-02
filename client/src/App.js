@@ -23,18 +23,15 @@ class App extends Component {
     return (
       <div>
         <Login>
-        {/* <Login socket={this.socket}></Login> */}
-        <SayWhat socket={this.socket}/>
-        </Login>
         <Router>
         <Switch> 
         <Route exact path="/" component={home} />
           <Route exact path="/players" component={players} />
           <Route exact path="/players/:id" component={playerDetail} />
-
           </Switch>
         </Router>
-
+        <SayWhat socket={this.socket}/>
+        </Login>
       </div>
     )
   }
