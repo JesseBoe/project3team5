@@ -58,9 +58,6 @@ class Timer extends Component {
             this.startTimer();
         }
     }
-    componentWillUnmount = () => {
-        this.stopTimer();
-    }
     render(){
         return(
             <div className="offset">
