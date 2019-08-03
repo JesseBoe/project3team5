@@ -128,18 +128,8 @@ class Login extends React.Component {
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
         
-        <Route
-          exact
-          path="/"
-          render={() => {
-            console.log(this.state.loggedIn);
-            if (!this.state.loggedIn) {
-              return <Redirect to={{ pathname: "/login" }} />;
-            } else {
-              return this.props.children;
-            }
-          }}
-        />
+        {this.state.loggedIn ? this.props.children : <Redirect to={{ pathname: "/login "}} />}
+            
         <Route
           exact
           path="/login"

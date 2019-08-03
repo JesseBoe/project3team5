@@ -26,7 +26,7 @@ class App extends Component {
           <Login>
 
             
-              {/* <Route exact path="/" component={Profile} /> */}
+              <Route exact path="/" component={Profile} />
               <Route
                 exact
                 path="/gameplay"
@@ -34,11 +34,6 @@ class App extends Component {
               />
               <Route exact path="/players" component={Players} />
               <Route exact path="/players/:id" component={playerDetail} />
-              <Route
-                // exact
-                // path="/hello"
-                render={() => <div>Hello</div>}
-              />
             
           </Login>
        
