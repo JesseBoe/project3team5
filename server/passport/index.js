@@ -12,9 +12,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
     console.log('Deserialize ... called')
-    User.findOne(
-        { _id: id },
-        'firstName lastName photos local.username',
+    User.findById(
+        id,
+        null,
         (err, user) => {
             console.log('======= DESERIALIZE USER CALLED =======')
             console.log(user)

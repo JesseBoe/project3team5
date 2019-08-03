@@ -22,21 +22,26 @@ class App extends Component {
   render() {
     return (
       <div>
-        
-          <Login>
-
-            
-              <Route exact path="/" component={Profile} />
+        <Login>
+          {loggedInUser => (
+            <div>
+              <Route
+                exact
+                path="/"
+                render={() => <Profile user={loggedInUser} />}
+              />
               <Route
                 exact
                 path="/gameplay"
-                render={() => <SayWhat socket={this.socket} />}
+                render={() => (
+                  <SayWhat socket={this.socket} user={loggedInUser} />
+                )}
               />
               <Route exact path="/players" component={Players} />
               <Route exact path="/players/:id" component={playerDetail} />
-            
-          </Login>
-       
+            </div>
+          )}
+        </Login>
       </div>
     );
   }
