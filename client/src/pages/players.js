@@ -7,8 +7,9 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
+import Navbar from "../components/Navbar/Navbar";
 
-class players extends Component {
+class Players extends Component {
   state = {
     players: [],
     name: "",
@@ -124,4 +125,4 @@ class players extends Component {
   }
 }
 
-export default players;
+export default Players;
