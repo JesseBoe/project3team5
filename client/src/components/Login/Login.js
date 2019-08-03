@@ -2,21 +2,31 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "../SignupForm";
 import axios from "axios";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Link, Redirect, Switch } from "react-router-dom";
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
       <nav className="navbar">
         <ul className="nav">
-          {/* <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li> */}
           <li>
             <Link to="#" className="nav-link" onClick={props.logout}>
               Logout
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/gameplay" className="nav-link">
+              Game Play
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Profile
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/players" className="nav-link">
+              Players
             </Link>
           </li>
         </ul>
@@ -117,6 +127,7 @@ class Login extends React.Component {
         <DisplayLinks logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
+        
         <Route
           exact
           path="/"
@@ -146,7 +157,7 @@ class Login extends React.Component {
           }}
         />
         <Route exact path="/signup" component={SignupForm} />
-        {/* <Loginform _login={this._login} /> */}
+        
       </div>
     );
   }

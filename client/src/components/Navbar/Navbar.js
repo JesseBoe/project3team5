@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import logo from "./SayWhatLogo.svg"
+import logo from "./SayWhatLogo.svg";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
 
@@ -27,6 +28,9 @@ class Navbar extends Component {
         return (
             <div>
                 <nav className="row d-flex" style={{ backgroundColor: "#1D1135", Width:"100%", color: "white", height: "70px", paddingLeft: "35px", paddingRight: "35px", paddingTop: "16px"}}>
+                <Link className="navbar-brand" to="/">
+                    Google Books
+                </Link>
                     <span className="d-flex col-8 mb-0"><span><img style={{cursor: "pointer", position: "absolute", top:"-44px"}} src={logo} height="125px" width="125px"></img></span></span>
                     {this.state.LoggedIn && 
                     <span className=" d-flex col-2">

@@ -71,7 +71,7 @@ if (process.env.NODE_ENV === "production") {
     "/static",
     express.static(path.join(__dirname, "client/build/static"))
   );
-  app.get(["/", "/login", "/signup"], (req, res) => {
+  app.get(["/", "/login", "/signup", "/gameplay", "/profile", "/players"], (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/"));
   });
 }
