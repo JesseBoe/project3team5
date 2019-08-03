@@ -109,7 +109,6 @@ class Login extends React.Component {
       })
       .then(response => {
         console.log(response);
-        console.log("hello repsonse!");
         if (response.status === 200) {
           // update the state
           this.setState({
@@ -128,7 +127,7 @@ class Login extends React.Component {
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
         
-        {this.state.loggedIn ? this.props.children : <Redirect to={{ pathname: "/login "}} />}
+        {this.state.loggedIn ? this.props.children(this.state.user) : <Redirect to={{ pathname: "/login "}} />}
             
         <Route
           exact
