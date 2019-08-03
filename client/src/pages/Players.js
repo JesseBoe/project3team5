@@ -45,7 +45,7 @@ class Players extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.position) {
+    if (this.state.name && this.state.level) {
       API.saveplayer({
         name: this.state.name,
         level: this.state.level,
@@ -88,13 +88,13 @@ class Players extends Component {
                 placeholder="score"
               />
               
-    
-              
               <FormBtn
-                disabled={!(this.state.position && this.state.name)}
+                disabled={!(this.state.level && this.state.name)}
                 onClick={this.handleFormSubmit}
               >
-               <i class="fas fa-check-square"></i> Submit Player
+               <button style="font-size:24px"> Submit player <i class="fa fa-check-square-o"></i></button>
+
+               {/* <i class="fas fa-check-square"></i> Submit Player */}
               </FormBtn>
             </form>
           </Col>
@@ -102,7 +102,7 @@ class Players extends Component {
             <Jumbotron>
               <h1><i class="fas fa-user-friends"></i> <strong>Players</strong></h1>
             </Jumbotron>
-            {this.state.players.length ? (
+            {this.state.players.level ? (
               <List>
                 {this.state.players.map(player => (
                   <ListItem key={player._id}>
