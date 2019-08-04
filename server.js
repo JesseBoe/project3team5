@@ -15,6 +15,9 @@ const passport = require("./server/passport");
 const app = express();
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
+var shortID = require('shortid');
+const Player = require('./classes/player.js');
+const Game = require('./classes/game.js')
 
 const PORT = process.env.PORT || 3001;
 
@@ -92,17 +95,63 @@ server.listen(PORT, function() {
 });
 
 var sockets = [];
+var games = [];
 
 io.on("connection", socket => {
   console.log(`Socket ${socket.id} connected.`);
-  sockets.push(socket);
+
+  let player = new Player();
+  sockets[player.id] = socket;
 
   socket.on("disconnect", () => {
+    if (player) {
+      if (games[player.currentGame]) {
+        games[player.currentGame].leaveGame(player);
+        syncGameDetails(player.currentGame);
+      }
+    }
     console.log(`Socket ${socket.id} disconnected.`);
   });
 
-  socket.on("SendMessage", data => {
-    console.log(data);
-    socket.broadcast.emit("RecieveMessage", data);
+  
+
+  //Make a game!
+  socket.on("createGame", () => {
+    let game = new Game();
+    games[game.id] = game;
+    socket.emit("createGameResponse", game.id);
+    syncGameDetails(game.id);
   });
+
+  //join a game!
+  socket.on("joinGame", (gameid) => {
+    //If the player is currently in a game, disconnect
+    if (games[player.currentGame]) {
+      games[player.currentGame].leaveGame(player);
+      syncGameDetails(player.currentGame);
+    }
+    //If the game exists, join it
+    if (games[gameid]) {
+      games[gameid].joinGame(player);
+      syncGameDetails(gameid);
+    }
+  });
+
+  socket.on("toggleReady", () => {
+    player.ready = !player.ready;
+    socket.emit("recieveMyPlayerData", player);
+    syncGameDetails(player.currentGame);
+  })
+
+  //update all clients with the latest game data! Used in many places
+  function syncGameDetails(gameId) {
+    games[gameId].players.forEach(eachPlayer => {
+      sockets[eachPlayer.id].emit("returnGameData", games[gameId]);
+    });
+  }
+
+  // socket.on("SendMessage", data => {
+  //   console.log(data);
+  //   socket.broadcast.emit("RecieveMessage", data);
+  // });
 });
