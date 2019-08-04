@@ -16,7 +16,12 @@ const userSchema = new Schema ({
     },
     photos: [],
     histScore: { type: Number, unique: false, required: false, default: 0 },
-    gameScore: { type: Number, unique: false, required: false, default: 0 }
+    gameScore: { type: Number, unique: false, required: false, default: 0 },
+    robot: { 
+        RobotImage: { type: String, default: "01" },
+        RobotAntenna: { type: String, default: "01" },
+        RobotColor: { type: String, default: "Red" } 
+    }
     // local: {
 	// 	email: { type: String, unique: true },
 	// 	password: { type: String }
