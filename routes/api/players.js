@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(playersController.findById)
-  .put(playersController.update)
+  .post(playersController.update)
   .delete(playersController.remove);
 
 module.exports = router;

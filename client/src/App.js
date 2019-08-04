@@ -21,7 +21,9 @@ if (window.location.host == "localhost:3000") {
 }
 
 class App extends Component {
-  socket = local ? openSocket("localhost:3001") : openSocket(window.location.host);
+  socket = local
+    ? openSocket("localhost:3001")
+    : openSocket(window.location.host);
 
   render() {
     return (
@@ -30,26 +32,49 @@ class App extends Component {
           {loggedInUser => {
             console.log(loggedInUser);
             return (
-            <div>
-              <Route
-                exact
-                path="/"
-                render={() => <Profile user={loggedInUser} />}
-              />
-              <Route
-                exact
-                path="/gameplay"
-                render={() => (
-                  <SayWhat socket={this.socket} user={loggedInUser} />
-                )}
-              />
-              <Route exact path="/players" component={Players} />
-              <Route exact path="/players/:id" component={playerDetail} />
-              <Route path="/room/:roomid" render={() => (<WaitingRoom create={false} socket={this.socket} user={loggedInUser}/>)}/>
-              <Route exact path="/create" render={() => (<WaitingRoom create={true} socket={this.socket} user={loggedInUser}/>)} />
-              <Route exact path="/join" render={() => (<JoinGameForum/>)}/>
-            </div>
-          );
+              <div>
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Profile user={loggedInUser} />}
+                />
+                <Route
+                  exact
+                  path="/gameplay"
+                  render={() => (
+                    <SayWhat socket={this.socket} user={loggedInUser} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/players"
+                  render={() => <Players user={loggedInUser} />}
+                />
+                <Route exact path="/players/:id" component={playerDetail} />
+                <Route
+                  path="/room/:roomid"
+                  render={() => (
+                    <WaitingRoom
+                      create={false}
+                      socket={this.socket}
+                      user={loggedInUser}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/create"
+                  render={() => (
+                    <WaitingRoom
+                      create={true}
+                      socket={this.socket}
+                      user={loggedInUser}
+                    />
+                  )}
+                />
+                <Route exact path="/join" render={() => <JoinGameForum />} />
+              </div>
+            );
           }}
         </Login>
       </div>
