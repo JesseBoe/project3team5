@@ -6,7 +6,8 @@ import Login from "./components/Login/Login";
 import Wheel from "./components/Wheel/Wheel";
 
 import SayWhat from "./components/SayWhat";
-import AvatarSetter from "./components/PlayerAvatar/AvatarSetter";
+import WaitingRoom from "./components/WaitingRoom/WaitingRoom";
+import JoinGameForum from "./components/JoinGameForum/JoinGameForum";
 
 import Players from "./pages/Players";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -14,10 +15,13 @@ import NoMatch from "./pages/NoMatch";
 import playerDetail from "./pages/playerDetail";
 import Profile from "./pages/Profile";
 
-console.log(window.location.host);
+let local = false;
+if (window.location.host == "localhost:3000") {
+  local = true;
+}
 
 class App extends Component {
-  socket = openSocket(window.location.host);
+  socket = local ? openSocket("localhost:3001") : openSocket(window.location.host);
 
   render() {
     return (
@@ -39,6 +43,9 @@ class App extends Component {
               />
               <Route exact path="/players" component={Players} />
               <Route exact path="/players/:id" component={playerDetail} />
+              <Route path="/room/:roomid" render={() => (<WaitingRoom create={false} socket={this.socket} user={loggedInUser}/>)}/>
+              <Route exact path="/create" render={() => (<WaitingRoom create={true} socket={this.socket} user={loggedInUser}/>)} />
+              <Route exact path="/join" render={() => (<JoinGameForum/>)}/>
             </div>
           )}
         </Login>

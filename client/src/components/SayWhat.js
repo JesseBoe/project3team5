@@ -26,7 +26,7 @@ class SayWhat extends Component {
                                 <Hint />
                             </div>
                             <div style={{ marginTop: "153px"}}>
-                                <PlayerSection />
+                                <PlayerSection gameData={this.gameData} />
                             </div>
                             {/* <div style={{ position: "absolute", top: "454px", left: "4.5%"}}> */}
                             <div style={{ position: "absolute", top: "800px", left: "4.5%" }}>
