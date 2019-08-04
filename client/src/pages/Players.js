@@ -92,7 +92,7 @@ class Players extends Component {
                 disabled={!(this.state.level && this.state.name)}
                 onClick={this.handleFormSubmit}
               >
-               <button style="font-size:24px"> Submit player <i class="fa fa-check-square-o"></i></button>
+               <button> Submit player <i class="fa fa-check-square-o"></i></button>
 
                {/* <i class="fas fa-check-square"></i> Submit Player */}
               </FormBtn>

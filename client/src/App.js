@@ -23,7 +23,9 @@ class App extends Component {
     return (
       <div>
         <Login>
-          {loggedInUser => (
+          {loggedInUser => {
+            console.log(loggedInUser);
+            return (
             <div>
               <Route
                 exact
@@ -40,7 +42,8 @@ class App extends Component {
               <Route exact path="/players" component={Players} />
               <Route exact path="/players/:id" component={playerDetail} />
             </div>
-          )}
+          );
+          }}
         </Login>
       </div>
     );
