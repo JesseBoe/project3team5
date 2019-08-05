@@ -57,7 +57,7 @@ class Players extends Component {
         firstName: this.state.firstName,
         robot: this.state.robot
       })
-        .then(res => this.loadplayers())
+        .then(res => window.location.reload())
         .catch(err => console.log(err));
     }
   };
