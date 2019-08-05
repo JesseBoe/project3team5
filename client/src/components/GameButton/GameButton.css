@@ -9,6 +9,18 @@
   transition: all .15s ease-in-out; 
 }
 
+.rcorners2 {
+  border-radius: 10px;
+  border: 2px solid #382e33;
+  background: #1d1135;
+  padding: 10px; 
+  width: 240px;
+  height: 60px;
+  transition: all .15s ease-in-out; 
+}
+
+
+
 .rcorners1:active {
     transform: scale(.9);
 }

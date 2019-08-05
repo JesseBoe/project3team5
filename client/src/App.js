@@ -46,6 +46,7 @@ class App extends Component {
               <Route path="/room/:roomid" render={() => (<WaitingRoom create={false} socket={this.socket} user={loggedInUser}/>)}/>
               <Route exact path="/create" render={() => (<WaitingRoom create={true} socket={this.socket} user={loggedInUser}/>)} />
               <Route exact path="/join" render={() => (<JoinGameForum/>)}/>
+              <Route path="/game/:roomid" render={() => (<SayWhat socket={this.socket} user={loggedInUser}/>)}/>
             </div>
           )}
         </Login>

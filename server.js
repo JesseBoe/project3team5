@@ -113,8 +113,6 @@ io.on("connection", socket => {
     console.log(`Socket ${socket.id} disconnected.`);
   });
 
-  
-
   //Make a game!
   socket.on("createGame", () => {
     let game = new Game();
@@ -137,21 +135,65 @@ io.on("connection", socket => {
     }
   });
 
+  //Ready up!
   socket.on("toggleReady", () => {
     player.ready = !player.ready;
     socket.emit("recieveMyPlayerData", player);
     syncGameDetails(player.currentGame);
+
+    //if all players are ready, start the game!~
+    if (games[player.currentGame].allReady() == true) {
+      games[player.currentGame].players.forEach(eachPlayer => {
+        sockets[eachPlayer.id].emit("startGame", eachPlayer.currentGame);
+      })
+      games[player.currentGame].start();
+    }
+  })
+
+  socket.on("requestUpdate", () => {
+    socket.emit("recieveMyPlayerData", player);
+    syncGameDetails(player.currentGame);
+  })
+
+  socket.on("requestSpinWheel", () => {
+    //Game exists
+    if (games[player.currentGame]) {
+      //its our turn
+      if (games[player.currentGame].getCurrentPlayerId() == player.id) 
+      {
+        let angle = Math.floor(Math.random() *359)
+        games[player.currentGame].players.forEach(eachPlayer => {
+          sockets[eachPlayer.id].emit("spin", angle);
+        })
+      }
+    }
+  })
+
+  socket.on("spinResult", (data) => {
+    if (games[player.currentGame]) {
+      if (games[player.currentGame].getCurrentPlayerId() == player.id) {
+        console.log(data);
+      }
+    }
   })
 
   //update all clients with the latest game data! Used in many places
   function syncGameDetails(gameId) {
-    games[gameId].players.forEach(eachPlayer => {
-      sockets[eachPlayer.id].emit("returnGameData", games[gameId]);
-    });
+    //Game exists
+    if (games[gameId]) {
+      games[gameId].players.forEach(eachPlayer => {
+        sockets[eachPlayer.id].emit("returnGameData", games[gameId]);
+      });
+    }
   }
 
-  // socket.on("SendMessage", data => {
-  //   console.log(data);
-  //   socket.broadcast.emit("RecieveMessage", data);
-  // });
+  socket.on("SendMessage", data => {
+    if (games[player.currentGame]) {
+      games[player.currentGame].players.forEach(eachPlayer => {
+        if (eachPlayer.id != player.id) {
+          sockets[eachPlayer.id].emit("RecieveMessage", data)
+        }
+      });
+    }
+  });
 });

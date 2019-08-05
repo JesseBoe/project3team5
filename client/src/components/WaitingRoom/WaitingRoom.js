@@ -9,7 +9,9 @@ let gameData = "";
 class WaitingRoom extends Component {
 
     redirectPath = "";
+    redirectPath2 = "";
     localReady = false;
+    pn2 = window.location.pathname;
 
     toggleReady = () => {
         this.props.socket.emit("toggleReady");
@@ -30,10 +32,16 @@ class WaitingRoom extends Component {
         }
         this.props.socket.on("returnGameData", (data) => {
             gameData = data;
+            console.log(gameData);
             this.forceUpdate();
         });
         this.props.socket.on("recieveMyPlayerData", (data) => {
             this.localReady = data.ready;
+            this.forceUpdate();
+        })
+        this.props.socket.on("startGame", (data) => {
+            this.redirectPath2 = `/game/${data}`
+            this.forceUpdate();
         })
     }
 
@@ -42,10 +50,11 @@ class WaitingRoom extends Component {
             <div>
                 <div style={{marginTop: "25%", textAlign: "center", fontSize: "48px", color:"white"}}>Waiting for players</div>
                 <div className= "d-flex justify-content-center" style={{marginTop: "20%"}}>
-                    <SingleButton color={this.localReady ? "#1eba57" : "#ba1e68"} func={this.toggleReady} text={this.localReady ? "Not Ready" : "Ready"}/>
+                    <SingleButton color={this.localReady ? "#1eba57" : "#ba1e68"} func={this.toggleReady} text={this.localReady ? "Ready" : "Not Ready"}/>
                 </div>
                 <PlayerSection gameData={gameData}/>
                 {this.redirectPath !== "" ? <Redirect to={{ pathname: this.redirectPath }} /> : ""}
+                {this.redirectPath2 !== "" ? <Redirect to={{ pathname: this.redirectPath2 }} /> : ""}
             </div>
         </div>
     }

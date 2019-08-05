@@ -4,18 +4,26 @@ module.exports = class Game {
     constructor() {
         this.id = shortID.generate();
         this.round = 0;
-        this.state = "Unstarted";
+        this.gameState = "Unstarted";
+        this.gameStateEnum = ["Unstarted", "Selecting Action", "Spinning Wheel", "Selecting Letter", "Showing Letters", "Finished"]
         this.numberOfPlayers = 0;
         this.whosTurn = -1;
         this.hasStarted = false;
         this.players = [];
+
+        this.puzzle = "";
+        this.puzzleCheat = "Luke, I am your father!"
+        this.hint = "StarWars";
+        this.disabledLetters = [];
+        this.onlyVowels = false;
+        this.timeRemaining = 10;
     }
 
     joinGame(player) {
         //Game has not started
         if (!this.hasStarted) {
             //Game is not full
-            if (this.numberOfPlayers <= 4) {
+            if (this.numberOfPlayers <= 3) {
                 //Player has not already joined?
                 if (this.players.indexOf(player) === -1) {
                     player.currentGame = this.id;
@@ -28,22 +36,54 @@ module.exports = class Game {
         return false;
     }
 
+    start() {
+        this.puzzle = this.processPuzzle(this.puzzleCheat);
+        this.hasStarted = true;
+        this.gameState = "Selecting Action"
+        this.whosTurn = 0;
+    }
+
+    isLetter(c) {
+    return c.toLowerCase() != c.toUpperCase();
+    }
+
+    processPuzzle(str) {
+        
+        let hiddenString = "";
+        str.split('').map((letter) => {
+            if (this.isLetter(letter)) {
+                hiddenString = hiddenString + "_";
+            } else {
+                hiddenString = hiddenString + letter;
+            }
+        })
+
+        return hiddenString;
+    }
+
     //We should call this any time a player switches their ready status.
-    startGame() {
+    allReady() {
         //Game has not started
         if (!this.hasStarted) {
+            let temp = true;
             this.players.forEach(player => {
                 //If a player isnt ready return false
                 if (!player.ready) {
-                    return false;
+                    temp = false;
                 }
             });
-            //Everyone is ready, is there more than one player?
-            if (this.numberOfPlayers > 1) {
-                return true;
+            if (temp) {
+                //Everyone is ready, is there more than one player?
+                if (this.numberOfPlayers > 1) {
+                    return true;
+                }
             }
             return false;
         }
+    }
+
+    getCurrentPlayerId() {
+        return this.players[this.whosTurn].id;
     }
 
     //This code assumes the game has not started yet..
