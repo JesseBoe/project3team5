@@ -136,9 +136,13 @@ class Login extends React.Component {
         <DisplayLinks logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
-        
-        {this.state.loggedIn ? this.props.children(this.state.user) : <Redirect to={{ pathname: "/login "}} />}
-            
+
+        {this.state.loggedIn ? (
+          this.props.children(this.state.user)
+        ) : (
+          <Redirect to={{ pathname: "/login" }} />
+        )}
+
         <Route
           exact
           path="/login"
