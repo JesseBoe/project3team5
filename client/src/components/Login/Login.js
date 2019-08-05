@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "../SignupForm";
 import axios from "axios";
-import { Route, Link, Redirect, Switch } from "react-router-dom";
+import { Route, Link, Redirect, withRouter } from "react-router-dom";
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
@@ -130,6 +130,17 @@ class Login extends React.Component {
   }
 
   render() {
+    let redirect = null;
+    if (!this.props.location.pathname.startsWith("/login")) {
+      redirect = (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { redirectTo: this.props.location.pathname }
+          }}
+        />
+      );
+    }
     return (
       <div className="LoginPage">
         {/* LINKS to our different 'pages' */}
@@ -137,33 +148,32 @@ class Login extends React.Component {
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
 
-        {this.state.loggedIn ? (
-          this.props.children(this.state.user)
-        ) : (
-          <Redirect to={{ pathname: "/login" }} />
-        )}
+        {this.state.loggedIn ? this.props.children(this.state.user) : redirect}
 
         <Route
-          exact
+          // exact
           path="/login"
-          render={() => {
+          render={props => {
+            console.log(props);
             if (this.state.loggedIn) {
-              return <Redirect to={{ pathname: "/" }} />;
+              return (
+                <Redirect to={{ pathname: props.location.state.redirectTo }} />
+              );
             } else {
               return (
                 <LoginForm
                   _login={this._login}
                   _googleSignin={this._googleSignin}
+                  redirectAfterLogin={props.location.state.redirectTo}
                 />
               );
             }
           }}
         />
         <Route exact path="/signup" component={SignupForm} />
-        
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
