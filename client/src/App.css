@@ -57,4 +57,93 @@ a {
  body {
    background-color: #69537d;
    overflow-x: hidden;
+   background-size: 180%;
  }
+ .container {
+  background:white;
+  width: 100%;
+  max-width: 960px;
+  height:500px;
+  overflow: scroll;
+  padding:2%;
+}
+
+ /* adjustment when viewed from each computer, ipad, phones, etc */
+@media screen and (max-width: 1100px) {
+  body {
+    /* margin-left: 1.5%;
+    margin-right:1.5%; */
+    background-size: 770%;
+  }
+  .container{
+    height:1000px
+  }
+  img{
+    margin-bottom:10%;
+  }
+}
+
+@media screen and (max-width: 812px) {
+  body {
+      background-size: 750%;
+  } 
+  
+  .App-header {
+      margin-left:1.5%;
+  }
+  
+  .container {
+    margin-top:15%;
+  height:800px;
+  width: 700px
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .jumbotron{
+    height:100px
+  }
+  
+  body{
+    background-size: 700%;
+  }
+  .container{
+    margin-top: 30%;
+    padding-top:2%;
+    margin-left:0%;
+    margin-right:5%;
+    width:95%;
+    margin-bottom:5%;
+    height:500px;
+  }
+  
+}
+
+@media screen and (max-width: 568px) {
+  .container{
+    height:450px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .container{
+    height:530px;
+    margin-left:2.5%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  body{
+    background-size:800%
+  }
+  .container{
+    height:520px;
+    margin-left: 2.5%;
+  }
+}
+  
+@media screen and (max-width: 320px) {
+  .container{
+    height:450px;
+  }
+}
