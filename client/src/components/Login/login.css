@@ -145,6 +145,14 @@
     font-weight: 900;
     line-height: 24px;
 }
+#label-confirm {
+    float: left;
+    color: #1d1135;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 24px;
+}
 
 #password-input {
     line-height: 20px;
@@ -154,6 +162,13 @@
 }
 
 #username-input {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #1d1135;
+}
+
+#confirmpass-input {
     line-height: 20px;
     font-size: 20px;
     font-weight: 900;
