@@ -8,6 +8,7 @@ import PuzzleBox from "./PuzzleBox/PuzzleBox"
 import Hint from "./Hint/Hint"
 import PlayerSection from "./PlayerAvatar/PlayerSection"
 import Wheel from "./Wheel/Wheel";
+import style  from "./SayWhat.css";
 
 
 
@@ -17,6 +18,7 @@ class SayWhat extends Component {
     gameData = "";
     myId = "";
     myturn = false;
+    keyboardOnScreen = false;
 
     componentDidMount() {
         this.props.socket.on("recieveMyPlayerData", (data) => {
@@ -28,6 +30,9 @@ class SayWhat extends Component {
             if (this.gameData.players[this.gameData.whosTurn].id === this.myId) {
                 this.myturn = true;
                 console.log("My turn");
+            }
+            else {
+                this.myturn = false;
             }
             this.forceUpdate();
         });
@@ -42,6 +47,16 @@ class SayWhat extends Component {
     }
     solve = () => {
         console.log("Solve");
+    }
+
+    isKeyboardOnScreen = () => {
+        if (this.myturn) {
+            if (this.gameData.gameState === "Selecting Consonant" || this.gameData.gameState === "Buy Vowel") {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     render() {
@@ -63,9 +78,10 @@ class SayWhat extends Component {
                                 <div style={{ marginTop: "153px" }}>
                                     <PlayerSection gameData={this.gameData} />
                                 </div>
-                                {/* <div style={{ position: "absolute", top: "454px", left: "4.5%"}}> */}
-                                <div style={{ position: "absolute", top: "800px", left: "4.5%" }}>
-                                    <VirtualKeyboard socket={this.props.socket} />
+                                <div style={{ position: "relative"}}>
+                                    <div className={this.isKeyboardOnScreen() ? "keyboardOffScreen keyboardOnScreen" : "keyboardOffScreen"}>
+                                        <VirtualKeyboard socket={this.props.socket} gameState={this.gameData} />
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-6 right">
@@ -76,7 +92,7 @@ class SayWhat extends Component {
                                     <Wheel socket={this.props.socket}/>
                                 </div>
                                 <div style={{ marginTop: "0px" }}>
-                                    <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve} enabled={this.myturn} />
+                                    <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve} enabled={this.myturn} gameState={this.gameData.gameState}/>
                                     <Chat socket={this.props.socket} />
                                 </div>
                             </div>

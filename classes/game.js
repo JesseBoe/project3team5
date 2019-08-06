@@ -5,7 +5,7 @@ module.exports = class Game {
         this.id = shortID.generate();
         this.round = 0;
         this.gameState = "Unstarted";
-        this.gameStateEnum = ["Unstarted", "Selecting Action", "Spinning Wheel", "Selecting Letter", "Showing Letters", "Finished"]
+        this.gameStateEnum = ["Unstarted", "Spinning Wheel", "Wheel Is Spinning", "Selecting Consonant", "Selecting Action", "Buy Vowel", "Solving", "Showing Letters", "Finished"]
         this.numberOfPlayers = 0;
         this.whosTurn = -1;
         this.hasStarted = false;
@@ -17,13 +17,14 @@ module.exports = class Game {
         this.disabledLetters = [];
         this.onlyVowels = false;
         this.timeRemaining = 10;
+        this.currentWheelValue;
     }
 
     joinGame(player) {
         //Game has not started
         if (!this.hasStarted) {
             //Game is not full
-            if (this.numberOfPlayers <= 3) {
+            if (this.numberOfPlayers <= 4) {
                 //Player has not already joined?
                 if (this.players.indexOf(player) === -1) {
                     player.currentGame = this.id;
@@ -39,12 +40,20 @@ module.exports = class Game {
     start() {
         this.puzzle = this.processPuzzle(this.puzzleCheat);
         this.hasStarted = true;
-        this.gameState = "Selecting Action"
+        this.gameState = "Spinning Wheel";
         this.whosTurn = 0;
     }
 
     isLetter(c) {
     return c.toLowerCase() != c.toUpperCase();
+    }
+
+    nextTurn() {
+        this.whosTurn++;
+        if (this.whosTurn >= this.numberOfPlayers) {
+            this.whosTurn = 0;
+        }
+        this.gameState = "Spinning Wheel";
     }
 
     processPuzzle(str) {
@@ -59,6 +68,35 @@ module.exports = class Game {
         })
 
         return hiddenString;
+    }
+
+    showLetter(letter) {
+        if (this.disabledLetters.indexOf(letter) == -1) {
+            this.disabledLetters.push(letter);
+            let arr = this.puzzleCheat.split('');
+            let count = 0;
+            let showAtIndex = [];
+            arr.forEach(char => {
+                if(char.toLocaleUpperCase() == letter) {
+                    showAtIndex.push(count);
+                }
+                count++;
+            });
+
+            return (showAtIndex);
+        }
+        else {
+            this.disabledLetters.push(letter);
+            console.log("This letter has already been chosen");
+            return ([]);
+        }
+    }
+
+    popLetter(index) {
+        let arr1 = this.puzzle.split('');
+        let arr2 = this.puzzleCheat.split('');
+        arr1[index] = arr2[index];
+        this.puzzle = arr1.join('')
     }
 
     //We should call this any time a player switches their ready status.

@@ -1,25 +1,13 @@
 import React, { Component } from "react";
 import keyCss from "./VirtualKeyboard.css"
-import { stat } from "fs";
 
 
 class VirtualKeyboard extends Component {
     alphabet1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
     alphabet2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
     alphabet3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
-    state = {
-        onlyVowels : false,
-        lettersDisabled : [],
-    }
+    
 
-    componentDidMount() {
-        this.props.socket.on("disableLetters", (data) => {
-            this.setState = {
-                letterDisabled : data.disabledLetters,
-                onlyVowels : data.onlyVowels
-            };
-        })
-    }
 
     chooseLetter = (letter) => {
         this.props.socket.emit("chooseLetter", letter);
@@ -37,19 +25,21 @@ class VirtualKeyboard extends Component {
 
     canSelect = (letter) => {
         let vowels = ['A', 'E', 'I', 'O', 'U'];
-        if (this.state.onlyVowels) {
+        if (this.props.gameState.onlyVowels) {
             if (vowels.indexOf(letter) !== -1) {
-                if (this.state.lettersDisabled.indexOf(letter) !== -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
                     return true;
                 }
+                return false;
             }
             return false;
         }
         else {
             if (vowels.indexOf(letter) == -1) {
-                if (this.state.lettersDisabled.indexOf(letter) !== -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
                     return true;
                 }
+                return false;
             }
             return false;
         }
