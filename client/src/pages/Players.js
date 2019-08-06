@@ -10,13 +10,15 @@ import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
 import Navbar from "../components/Navbar/Navbar";
 
 class Players extends Component {
-  state = {
-    players: [],
-    name: "",
-    level: "",
-    score: "",
-    
-  };
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      players: [],
+      firstName: props.user.firstName,
+      robot: props.user.robot
+    };
+  }
 
   componentDidMount() {
     this.loadplayers();
@@ -24,9 +26,7 @@ class Players extends Component {
 
   loadplayers = () => {
     API.getplayers()
-      .then(res =>
-        this.setState({ players: res.data, name: "", level: "", score: "" })
-      )
+      .then(res => this.setState({ players: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -37,22 +37,27 @@ class Players extends Component {
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.setState({
-      [name]: value
+      firstName: value
+    });
+  };
+
+  handleAvatarChange = robot => {
+    console.log(robot);
+    this.setState({
+      robot: robot
     });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.position) {
-      API.saveplayer({
-        name: this.state.name,
-        level: this.state.level,
-        score: this.state.score,
-        
+    if (this.state.firstName) {
+      API.saveplayer(this.props.user._id, {
+        firstName: this.state.firstName,
+        robot: this.state.robot
       })
-        .then(res => this.loadplayers())
+        .then(res => window.location.reload())
         .catch(err => console.log(err));
     }
   };
@@ -63,52 +68,52 @@ class Players extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1><i class="fas fa-user-plus"></i> <strong>Add Player</strong></h1>
+              <h1>
+                <i class="fas fa-user-plus" /> <strong>Add Player</strong>
+              </h1>
             </Jumbotron>
             <div>
-              <AvatarSetter/>
+              <AvatarSetter 
+                robot={this.props.user.robot}
+                onChange={this.handleAvatarChange} 
+              />
             </div>
             <form>
               <Input
-                value={this.state.name}
+                value={this.state.firstName}
                 onChange={this.handleInputChange}
-                name="name"
-                placeholder="name*"
+                name="firstName"
+                placeholder="First Name"
               />
-              <Input
-                value={this.state.level}
-                onChange={this.handleInputChange}
-                name="level"
-                placeholder="level*"
-              />
-              <Input
-                value={this.state.score}
-                onChange={this.handleInputChange}
-                name="score"
-                placeholder="score"
-              />
-              
-    
-              
+
               <FormBtn
-                disabled={!(this.state.position && this.state.name)}
+                disabled={!(this.state.firstName)}
                 onClick={this.handleFormSubmit}
-              >
-               <i class="fas fa-check-square"></i> Submit Player
+                
+              >Save Changes
+                {/* <button>
+                  {" "}
+                  Submit player <i class="fa fa-check-square-o" />
+                </button> */}
+
+                {/* <i class="fas fa-check-square"></i> Submit Player */}
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1><i class="fas fa-user-friends"></i> <strong>Players</strong></h1>
+              <h1>
+                <i class="fas fa-user-friends" /> <strong>Players</strong>
+              </h1>
             </Jumbotron>
-            {this.state.players.length ? (
+            {this.state.players.level ? (
               <List>
                 {this.state.players.map(player => (
                   <ListItem key={player._id}>
                     <Link to={"/players/" + player._id}>
                       <strong>
-                      <i class="fas fa-user"></i> {player.name}: {player.position}
+                        <i class="fas fa-user" /> {player.firstName}:{" "}
+                        {player.position}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteplayer(player._id)} />

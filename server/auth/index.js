@@ -54,7 +54,7 @@ router.post(
       console.log(`Deleting ${cleanUser.local.password}`);
       delete cleanUser.local.password;
     }
-    res.send();
+    res.send({"user":user});
   }
 );
 

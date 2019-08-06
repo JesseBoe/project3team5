@@ -4,9 +4,12 @@ import { Jumbotron } from "reactstrap";
 import { Col, Row, Container } from "../components/Grid";
 import { Link } from "react-router-dom";
 import { PromiseProvider } from "mongoose";
+import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
+import NewAvatar from "../components/PlayerAvatar/NewAvatar";
 
 const Profile = props => {
   console.log(props.user);
+  console.log(props.user.robot.RobotColor);
   return (
     <Container>
       <br />
@@ -22,17 +25,23 @@ const Profile = props => {
             </h1>
             <p className="lead text-center"> Players</p>
             <hr className="my-2 text-center" />
-            
-              {/* <Link to="/teams" className="btn btn-outline-primary">teams</Link> 
+
+            {/* <Link to="/teams" className="btn btn-outline-primary">teams</Link> 
         <Link to="/games" className="btn btn-outline-primary">games</Link>  */}
-          <div>
-            Name: {props.user.firstName} { props.user.lastName}
-            <br/>
-            Game Score: {props.user.gameScore}
-            <br/>
-            Historical Score: {props.user.histScore}
-            <br/>
-          </div>
+            <div>
+              <NewAvatar
+                RobotAntenna={props.user.robot.RobotAntenna}
+                RobotColor={props.user.robot.RobotColor}
+                RobotImage={props.user.robot.RobotImage}
+              />
+              <br />
+              Name: {props.user.firstName} {props.user.lastName}
+              <br />
+              Game Score: {props.user.gameScore}
+              <br />
+              Historical Score: {props.user.histScore}
+              <br />
+            </div>
           </Jumbotron>
         </Col>
         <Col size="sm-1" />

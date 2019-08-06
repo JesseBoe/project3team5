@@ -21,7 +21,9 @@ if (window.location.host == "localhost:3000") {
 }
 
 class App extends Component {
-  socket = local ? openSocket("localhost:3001") : openSocket(window.location.host);
+  socket = local
+    ? openSocket("localhost:3001")
+    : openSocket(window.location.host);
 
   render() {
     return (
