@@ -37,12 +37,13 @@ class LoginForm extends Component {
             return (
                 <div className="modal-wrapper LoginForm"
                     style={{
-                    transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
-                    opacity: props.show ? '1' : '0'
+                    // transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
+                    // opacity: props.show ? '1' : '0'
                     }}>
                     <div className="modal-header">
-                        <h1>Sign In</h1>
-                        <span className="close-modal-btn" onClick={props.close}>×</span>
+                        <h1>Login</h1>
+                        <span className="close-modal-btn" onClick={'/signup'}>×</span>
+                        {/* <span className="close-modal-btn" onClick={props.close}>×</span> */}
                     </div>
                     <div className="modal-body">
                         <form name="signin" id="modalForm">
@@ -76,7 +77,7 @@ class LoginForm extends Component {
                         <button className='submit-button btn-block' onClick={this.handleSubmit}>Login</button>
                     </div>
                     <div>
-                        <a href="/auth/google">
+                        <a className="login-image" href="/auth/google">
                             <img src={googleButton} alt="sign into Google Button" />
                         </a>
                     </div>

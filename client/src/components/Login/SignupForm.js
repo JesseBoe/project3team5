@@ -53,8 +53,8 @@ class SignupForm extends Component {
         return (
             <div className="modal-wrapper SignupForm"
                 style={{
-                    transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
-                    opacity: props.show ? '1' : '0'
+                    // transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
+                    // opacity: props.show ? '1' : '0'
                 }}>
                 <div className="modal-header">
                     <h1>Create Account</h1>

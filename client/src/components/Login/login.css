@@ -9,7 +9,7 @@
     box-shadow: 0 5px 8px 0 rgba(194, 161, 161, 0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     margin: 25px auto 0;
     transition: all .8s;
-    width: 33%;
+    width: 40%;
     font-family: 'Roboto Slab', serif;
     text-align: center;
 }
@@ -59,7 +59,7 @@
     font-weight: 800;
     text-align: center;
     color: #1d1135;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .submit-button {
@@ -67,7 +67,7 @@
     margin-top: 30px;
     background: #7649fe;
     color: #1d1135;
-    width: 80%;
+    width: 45%;
     height: 42px;
     font-size: 24px;
     font-weight: 800;
