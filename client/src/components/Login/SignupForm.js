@@ -58,10 +58,11 @@ class SignupForm extends Component {
                 }}>
                 <div className="modal-header">
                     <h1>Create Account</h1>
-                    <span className="close-modal-btn" onClick={props.close}>×</span>
+                    <span className="close-modal-btn" onClick={'/signup'}>×</span>
+                    {/* <span className="close-modal-btn" onClick={props.close}>×</span> */}
                 </div>
                 <div className="modal-body">
-                    <form name="signin" id="modalForm">
+                    <form name="signup" id="modalForm">
                         <div className="inputField">
                             <label id="label-username" htmlFor="username">Username:</label>
                             <input
@@ -104,7 +105,7 @@ class SignupForm extends Component {
                     <button className='submit-button btn-block' onClick={this.handleSubmit}>Register</button>
                 </div>
                 <div>
-                    <a href="/auth/google">
+                    <a className="login-image" href="/auth/google">
                         <img src={googleButton} alt="sign into Google Button" />
                     </a>
                 </div>
@@ -112,7 +113,7 @@ class SignupForm extends Component {
                     <a href="/login" className='footerText'c>Sign in</a>
                 </div> 
             </div>
-        )
+        );
     }
 }
 
