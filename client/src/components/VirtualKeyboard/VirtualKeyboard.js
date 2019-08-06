@@ -10,7 +10,16 @@ class VirtualKeyboard extends Component {
 
 
     chooseLetter = (letter) => {
-        this.props.socket.emit("chooseLetter", letter);
+        let vowels = ['A', 'E', 'I', 'O', 'U'];
+        console.log(vowels.indexOf(letter));
+        if (this.props.gameState.onlyVowels) {
+            if (vowels.indexOf(letter) !== -1) {
+                this.props.socket.emit("chooseLetter", letter);
+            }
+        }
+        else if (vowels.indexOf(letter) == -1) {
+            this.props.socket.emit("chooseLetter", letter);
+        }
     }
 
     // disable = (letter) => {

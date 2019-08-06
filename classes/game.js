@@ -3,12 +3,13 @@ var shortID = require('shortid');
 module.exports = class Game {
     constructor() {
         this.id = shortID.generate();
-        this.round = 0;
+        this.round = 1;
         this.gameState = "Unstarted";
         this.gameStateEnum = ["Unstarted", "Spinning Wheel", "Wheel Is Spinning", "Selecting Consonant", "Selecting Action", "Buy Vowel", "Solving", "Showing Letters", "Finished"]
         this.numberOfPlayers = 0;
         this.whosTurn = -1;
         this.hasStarted = false;
+
         this.players = [];
 
         this.puzzle = "";
@@ -18,6 +19,7 @@ module.exports = class Game {
         this.onlyVowels = false;
         this.timeRemaining = 10;
         this.currentWheelValue;
+        this.spinResolved = true;
     }
 
     joinGame(player) {
@@ -70,6 +72,44 @@ module.exports = class Game {
         return hiddenString;
     }
 
+    puzzleSolved() {
+        if (this.puzzle == this.puzzleCheat) {
+            return true;
+        }
+        return false;
+    }
+
+    puzzleGuessed(guess) {
+        if (guess == this.puzzleCheat) {
+            return true;
+        }
+        return false;
+    }
+
+    endRound() {
+        this.players.forEach(player => {
+            player.totalCash += player.cash;
+            player.cash = 0;
+        });
+    }
+
+    endGame() {
+        //todo
+
+        //Calcuclate who has the most score.
+
+    }
+
+    getNewPuzzle() {
+        this.puzzleCheat = "Luke, I am your father!";
+        this.puzzle = this.processPuzzle(this.puzzleCheat);
+        this.disabledLetters = [];
+        this.onlyVowels = false;
+        this.gameState = "Spinning Wheel";
+        this.round++;
+        this.spinResolved = true;
+    }
+
     showLetter(letter) {
         if (this.disabledLetters.indexOf(letter) == -1) {
             this.disabledLetters.push(letter);
@@ -86,6 +126,7 @@ module.exports = class Game {
             return (showAtIndex);
         }
         else {
+            //This shouldnt really happen.
             this.disabledLetters.push(letter);
             console.log("This letter has already been chosen");
             return ([]);

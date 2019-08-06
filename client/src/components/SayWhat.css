@@ -12,3 +12,20 @@
     margin-left: -340px;
     top: -120px;
 }
+
+.puzzleSolveOffScreen {
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    top: 1080px;
+    z-index: 10;
+    transition: top .6s ease-out;
+}
+
+.puzzleSolveOnScreen {
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    margin-left: -400px;
+    z-index: 10;
+}

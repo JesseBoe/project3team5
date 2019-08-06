@@ -9,6 +9,7 @@ module.exports = class Player {
         this.robotAntenna = '01';
         this.robotBody = '01';
         this.cash = 0;
+        this.totalCash = 0;
         this.ready = false;
 
         //This is the current game ID

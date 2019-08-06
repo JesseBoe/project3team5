@@ -8,6 +8,8 @@ import PuzzleBox from "./PuzzleBox/PuzzleBox"
 import Hint from "./Hint/Hint"
 import PlayerSection from "./PlayerAvatar/PlayerSection"
 import Wheel from "./Wheel/Wheel";
+import PuzzleSolve from "./PuzzleSolve/PuzzleSolve";
+import TurnArrow from "./TurnArrow/TurnArrow";
 import style  from "./SayWhat.css";
 
 
@@ -18,7 +20,8 @@ class SayWhat extends Component {
     gameData = "";
     myId = "";
     myturn = false;
-    keyboardOnScreen = false;
+    keyboardOnScreen = true;
+    hideArrow = false;
 
     componentDidMount() {
         this.props.socket.on("recieveMyPlayerData", (data) => {
@@ -43,15 +46,25 @@ class SayWhat extends Component {
         this.props.socket.emit("requestSpinWheel");
     }
     buyVowel = () => {
-        console.log("BuyVowel");
+        this.props.socket.emit("buyVowel");
     }
     solve = () => {
-        console.log("Solve");
+        this.props.socket.emit("solvePuzzle");
     }
 
     isKeyboardOnScreen = () => {
         if (this.myturn) {
             if (this.gameData.gameState === "Selecting Consonant" || this.gameData.gameState === "Buy Vowel") {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    isPuzzleSolveOnScreen = () => {
+        if (this.myturn) {
+            if (this.gameData.gameState === "Solving") {
                 return true;
             }
             return false;
@@ -65,6 +78,11 @@ class SayWhat extends Component {
                 <div>
                     <Navbar />
                     <div className="container" style={{ maxWidth: "98%" }}>
+                        <div style={{ position: 'fixed', width: '97%', height: '600px', zIndex: (this.isPuzzleSolveOnScreen() ? 1 : -1), overflow: 'hidden'}}>
+                            <div className={this.isPuzzleSolveOnScreen() ? "puzzleSolveOffScreen puzzleSolveOnScreen" : "puzzleSolveOffScreen"}>
+                                <PuzzleSolve socket={this.props.socket} puzzle={this.gameData.puzzle}/>
+                            </div>
+                        </div>
                         <div className="row">
                             <div className="col-6 left" style={{ overflow: "hidden" }}>
                                 <div>
@@ -76,7 +94,7 @@ class SayWhat extends Component {
                                     <Hint hint={this.gameData.hint} />
                                 </div>
                                 <div style={{ marginTop: "153px" }}>
-                                    <PlayerSection gameData={this.gameData} />
+                                    <PlayerSection hideArrow={this.hideArrow} gameData={this.gameData} />
                                 </div>
                                 <div style={{ position: "relative"}}>
                                     <div className={this.isKeyboardOnScreen() ? "keyboardOffScreen keyboardOnScreen" : "keyboardOffScreen"}>

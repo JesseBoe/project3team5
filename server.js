@@ -168,6 +168,8 @@ io.on("connection", socket => {
         //Game state is correct
         if (games[player.currentGame].gameState == "Selecting Action" || games[player.currentGame].gameState == "Spinning Wheel") {
           //Spin wheel
+          games[player.currentGame].spinResolved = false;
+          games[player.currentGame].spinCount++;
           let angle = Math.floor(Math.random() * 359)
           games[player.currentGame].gameState = "Wheel Is Spinning";
           games[player.currentGame].players.forEach(eachPlayer => {
@@ -182,10 +184,77 @@ io.on("connection", socket => {
   socket.on("spinResult", (data) => {
     //Game Exists
     if (gameExists(player)) {
-      if (games[player.currentGame].getCurrentPlayerId() == player.id) {
-        games[player.currentGame].curentWheelValue = data;
-        games[player.currentGame].gameState = "Selecting Consonant";
-        syncGameDetails(player.currentGame);
+      if (games[player.currentGame].getCurrentPlayerId() === player.id) 
+      {
+        if (!games[player.currentGame].spinResolved) {
+          sendServerMessage(player.currentGame, "The wheel landed on " + data);
+          if (data == "  BANKRUPT") {
+            console.log("Bankrupt landed")
+            player.cash = 0;
+            games[player.currentGame].nextTurn();
+          }
+          else if (data == " LOSE TURN") {
+            games[player.currentGame].nextTurn();
+          }
+          else {
+            games[player.currentGame].curentWheelValue = data;
+            games[player.currentGame].gameState = "Selecting Consonant";
+          }
+          games[player.currentGame].spinResolved = true;
+          syncGameDetails(player.currentGame);
+        }
+      }
+    }
+  })
+
+  socket.on("buyVowel", () => {
+    //GameExists
+    if(gameExists(player)) {
+      //Its my turn
+      if (games[player.currentGame].getCurrentPlayerId() === player.id) {
+        //GameState is correct
+        if (games[player.currentGame].gameState == "Selecting Action") {
+          games[player.currentGame].gameState = "Buy Vowel";
+          games[player.currentGame].onlyVowels = true;
+          syncGameDetails(player.currentGame);
+        }
+      }
+    }
+  })
+
+  socket.on("solvePuzzle", () => {
+    //GameExists
+    if (gameExists(player)) {
+      //Its my turn
+      if (games[player.currentGame].getCurrentPlayerId() === player.id) {
+        //GameState is correct
+        if (games[player.currentGame].gameState == "Selecting Action") {
+          games[player.currentGame].gameState = "Solving";
+          syncGameDetails(player.currentGame);
+        }
+      }
+    }
+  })
+
+  socket.on("idLikeToSolveThePuzzle", (data) => {
+    //GameExists
+    if (gameExists(player)) {
+      //Its my turn
+      if (games[player.currentGame].getCurrentPlayerId() === player.id) {
+        //GameState is correct
+        if (games[player.currentGame].gameState == "Solving") {
+          if (games[player.currentGame].puzzleGuessed(data)) {
+            sendServerMessage(player.currentGame, player.username + " tried to guess the puzzle: " + data);
+            sendServerMessage(player.currentGame, "They were correct!");
+            roundOver();
+          }
+          else {
+            sendServerMessage(player.currentGame, player.username + " tried to guess the puzzle: " + data);
+            sendServerMessage(player.currentGame, "They were incorrect!");
+            games[player.currentGame].nextTurn();
+          }
+          syncGameDetails(player.currentGame);
+        }
       }
     }
   })
@@ -196,7 +265,7 @@ io.on("connection", socket => {
       //Its my turn
       if (games[player.currentGame].getCurrentPlayerId() == player.id) { 
         //Game state is correct
-        if (games[player.currentGame].gameState == "Selecting Consonant" || games[player.currentGame].gameState == "Buy Vowel") { 
+        if (games[player.currentGame].gameState == "Selecting Consonant") { 
           let showAtIndex = games[player.currentGame].showLetter(letter);
           games[player.currentGame].gameState = "Showing Letters";
           if (showAtIndex.length > 0) {
@@ -210,7 +279,27 @@ io.on("connection", socket => {
                   showingLettersDone(false);
                   clearInterval(interval);
                 }
-              }, 1000
+              }, 500
+            );
+          }
+          else {
+            showingLettersDone(true);
+          }
+        }
+        if (games[player.currentGame].gameState == "Buy Vowel") {
+          player.cash -= 250;
+          let showAtIndex = games[player.currentGame].showLetter(letter);
+          games[player.currentGame].gameState = "Showing Letters";
+          if (showAtIndex.length > 0) {
+            let interval = setInterval(
+              () => {
+                games[player.currentGame].popLetter(showAtIndex.shift());
+                syncGameDetails(player.currentGame);
+                if (showAtIndex.length <= 0) {
+                  showingLettersDone(false);
+                  clearInterval(interval);
+                }
+              }, 500
             );
           }
           else {
@@ -222,13 +311,30 @@ io.on("connection", socket => {
   })
 
   function showingLettersDone(passTurn) {
-    if (passTurn) {
+    games[player.currentGame].onlyVowels = false;
+    if (games[player.currentGame].puzzleSolved()) {
+      roundOver();
+    }
+    else if (passTurn) {
       games[player.currentGame].nextTurn();
     }
     else {
       games[player.currentGame].gameState = "Selecting Action";
     }
     syncGameDetails(player.currentGame);
+  }
+
+  function roundOver() {
+    console.log("RoundOver");
+    if (games[player.currentGame].round > 3) {
+      console.log("END GAME");
+      games[player.currentGame].endRound();
+      games[player.currentGame].endGame();
+    }
+    else {
+      games[player.currentGame].endRound();
+      games[player.currentGame].getNewPuzzle();
+    }
   }
 
   //update all clients with the latest game data! Used in many places
@@ -248,12 +354,19 @@ io.on("connection", socket => {
     return false;
   }
 
+  function sendServerMessage(gameId, str) {
+    let message = {name: "Server", text: str};
+    games[gameId].players.forEach(eachPlayer => {
+      sockets[eachPlayer.id].emit("RecieveMessage", message);
+    })
+  }
+
   socket.on("SendMessage", data => {
     //Game exists
     if (gameExists(player)) {
       games[player.currentGame].players.forEach(eachPlayer => {
         if (eachPlayer.id != player.id) {
-          sockets[eachPlayer.id].emit("RecieveMessage", data)
+          sockets[eachPlayer.id].emit("RecieveMessage", data);
         }
       });
     }
