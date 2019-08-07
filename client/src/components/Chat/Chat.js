@@ -3,23 +3,17 @@ import Message from "./Message";
 
 class Chat extends Component {
     chatAtBottom = true;
-    socket = "";
 
     state = {
         messages: [],
         textField : "",
-        userName : "Jesse"
     }
 
     componentDidMount() {
         if (this.props.socket) {
-            this.socket = this.props.socket;
-            this.socket.on("RecieveMessage", (data) => {
+            this.props.socket.on("RecieveMessage", (data) => {
                 this.setMessage(data.name, data.text);
             })
-        }
-        else {
-            console.log("Socket is not yet mounted");
         }
 
         let chatBody = document.getElementById("chatBody");
@@ -44,14 +38,14 @@ class Chat extends Component {
 
     sendMessage() {
         let data = {
-            name : this.state.userName,
-            text : this.state.textField
+            name: this.props.user.local.username,
+            text: this.state.textField
         }
         this.setState({
             textField: ""
         });
         this.setMessage(data.name, data.text);
-        this.socket.emit("SendMessage", data);
+        this.props.socket.emit("SendMessage", data);
     }
 
     setMessage(_name, _text) {

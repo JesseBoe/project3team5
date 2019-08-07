@@ -36,14 +36,7 @@ class App extends Component {
                 path="/"
                 render={() => <Profile user={loggedInUser} />}
               />
-              <Route
-                exact
-                path="/gameplay"
-                render={() => (
-                  <SayWhat socket={this.socket} user={loggedInUser} />
-                )}
-              />
-              <Route exact path="/players" component={Players} />
+              <Route exact path="/players" render={() => <Players user={loggedInUser} />} />
               <Route exact path="/players/:id" component={playerDetail} />
               <Route path="/room/:roomid" render={() => (<WaitingRoom create={false} socket={this.socket} user={loggedInUser}/>)}/>
               <Route exact path="/create" render={() => (<WaitingRoom create={true} socket={this.socket} user={loggedInUser}/>)} />
@@ -56,5 +49,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

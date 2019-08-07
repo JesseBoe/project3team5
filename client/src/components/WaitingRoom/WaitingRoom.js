@@ -19,6 +19,10 @@ class WaitingRoom extends Component {
     }
     
     componentDidMount() {
+
+        let playerObj = {username: this.props.user.local.username, robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor};
+        this.props.socket.emit("setPlayer", playerObj);
+
         if (this.props.create) {
             this.props.socket.emit("createGame");
             this.props.socket.on("createGameResponse", (str) => {

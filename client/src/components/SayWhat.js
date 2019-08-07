@@ -24,6 +24,8 @@ class SayWhat extends Component {
     hideArrow = false;
 
     componentDidMount() {
+        let playerObj = { username: this.props.user.local.username, robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor };
+        this.props.socket.emit("setPlayer", playerObj);
         this.props.socket.on("recieveMyPlayerData", (data) => {
             this.myId = data.id;
             this.forceUpdate();
@@ -111,7 +113,7 @@ class SayWhat extends Component {
                                 </div>
                                 <div style={{ marginTop: "0px" }}>
                                     <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve} enabled={this.myturn} gameState={this.gameData.gameState}/>
-                                    <Chat socket={this.props.socket} />
+                                    <Chat socket={this.props.socket} user={this.props.user} />
                                 </div>
                             </div>
                         </div>
