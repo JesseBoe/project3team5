@@ -75,7 +75,7 @@ class SayWhat extends Component {
     }
 
     render() {
-        if (this.gameData != "") {
+        if (this.gameData !== "") {
             return (
                 <div>
                     <Navbar />

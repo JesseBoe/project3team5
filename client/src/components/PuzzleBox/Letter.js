@@ -12,7 +12,7 @@ class Letter extends Component {
 
         let display;
 
-        if (this.props.letter == "_") {
+        if (this.props.letter === "_") {
             display = <span className="letter">
                 {this.props.letter}
             </span>;

@@ -153,14 +153,14 @@ class Login extends React.Component {
             console.log(props);
             if (this.state.loggedIn) {
               return (
-                <Redirect to={{ pathname: this.props.location.state.redirectTo }} />
+                <Redirect to={{ pathname: this.state.redirectTo }} />
               );
             } else {
               return (
                 <LoginForm
                   _login={this._login}
                   _googleSignin={this._googleSignin}
-                  redirectAfterLogin={this.props.location.state.redirectTo}
+                  redirectAfterLogin={this.state.redirectTo}
                 />
               );
             }

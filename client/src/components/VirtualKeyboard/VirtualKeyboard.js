@@ -17,7 +17,7 @@ class VirtualKeyboard extends Component {
                 this.props.socket.emit("chooseLetter", letter);
             }
         }
-        else if (vowels.indexOf(letter) == -1) {
+        else if (vowels.indexOf(letter) === -1) {
             this.props.socket.emit("chooseLetter", letter);
         }
     }
@@ -36,7 +36,7 @@ class VirtualKeyboard extends Component {
         let vowels = ['A', 'E', 'I', 'O', 'U'];
         if (this.props.gameState.onlyVowels) {
             if (vowels.indexOf(letter) !== -1) {
-                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) === -1) {
                     return true;
                 }
                 return false;
@@ -44,8 +44,8 @@ class VirtualKeyboard extends Component {
             return false;
         }
         else {
-            if (vowels.indexOf(letter) == -1) {
-                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
+            if (vowels.indexOf(letter) === -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) === -1) {
                     return true;
                 }
                 return false;
