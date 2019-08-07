@@ -1,0 +1,21 @@
+.rcorners1 {
+  border-radius: 10px;
+  border: 2px solid #ba1e68;
+  background: #1d1135;
+  padding: 10px; 
+  width: 240px;
+  height: 60px;
+  cursor: pointer;
+  transition: all .15s ease-in-out; 
+}
+
+.rcorners1:active {
+    transform: scale(.9);
+}
+
+.unselect {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

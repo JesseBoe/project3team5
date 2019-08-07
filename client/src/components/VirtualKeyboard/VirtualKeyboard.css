@@ -1,0 +1,43 @@
+.click-item {
+    background-size: cover;
+    background-position: 50%;
+    height: 60px;
+    width: 60px;
+    font-size: 32px;
+    margin: 4px 4px;
+    border: 5px solid #f1f1f1;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    transition: all .15s ease-in-out;
+    cursor: pointer;
+}
+
+.disabled {
+    background-size: cover;
+    background-position: 50%;
+    height: 60px;
+    width: 60px;
+    font-size: 32px;
+    margin: 4px 4px;
+    border: 5px solid #f1f1f1;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    text-decoration: line-through;
+    color: red;
+}
+
+.unselect {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.click-item:hover {
+    transform: scale(1.2);
+}
+.Keyboard {
+    background-color: rgb(245, 245, 245);
+}

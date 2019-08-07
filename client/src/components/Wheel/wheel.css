@@ -1,0 +1,35 @@
+/* * {
+    border: 1px red solid;
+} */
+#canvasContainer {
+    position: relative;
+    width: 400px;
+    /* background-color: lightgray; */
+}
+#canvas {
+    background-image: url(../../images/wheelbg.png);
+    background-repeat: no-repeat;   
+    background-position: center;  
+    font-family: 'Roboto Slab', serif;
+    width: 400px;                  
+    height: 400px;
+    z-index: 999;
+}
+#prizePointer {
+    position: absolute;
+    left: 175px;
+    top: 5px;
+    z-index: 999;
+}
+
+#logo {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    z-index: 998;
+}
+/* .player {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 800;
+} */
