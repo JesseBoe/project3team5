@@ -136,6 +136,7 @@ io.on("connection", socket => {
       games[player.currentGame].leaveGame(player);
       syncGameDetails(player.currentGame);
     }
+    player.reset();
     //If the game exists, join it
     if (games[gameid]) {
       games[gameid].joinGame(player);

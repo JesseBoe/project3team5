@@ -24,7 +24,7 @@ class SayWhat extends Component {
     hideArrow = false;
 
     componentDidMount() {
-        let playerObj = { username: this.props.user.local.username, robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor };
+        let playerObj = { username: (this.props.user.local ? this.props.user.local.username : this.props.user.firstName), robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor };
         this.props.socket.emit("setPlayer", playerObj);
         this.props.socket.on("recieveMyPlayerData", (data) => {
             this.myId = data.id;

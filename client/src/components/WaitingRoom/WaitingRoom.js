@@ -11,7 +11,6 @@ class WaitingRoom extends Component {
     redirectPath = "";
     redirectPath2 = "";
     localReady = false;
-    pn2 = window.location.pathname;
 
     toggleReady = () => {
         this.props.socket.emit("toggleReady");
@@ -19,8 +18,8 @@ class WaitingRoom extends Component {
     }
     
     componentDidMount() {
-
-        let playerObj = {username: this.props.user.local.username, robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor};
+        console.log(this.props.user);
+        let playerObj = { username: (this.props.user.local ? this.props.user.local.username : this.props.user.firstName), robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor};
         this.props.socket.emit("setPlayer", playerObj);
 
         if (this.props.create) {

@@ -73,7 +73,7 @@ class Login extends React.Component {
     super();
     this.state = {
       loggedIn: false,
-      user: null
+      user: null,
     };
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
@@ -132,7 +132,7 @@ class Login extends React.Component {
 
   render() {
     let redirect = null;
-    if (!this.props.location.pathname.startsWith("/login")) {
+    if (!this.props.location.pathname.startsWith("/login") && !this.props.location.pathname.startsWith("/signup")) {
       redirect = (
         <Redirect
           to={{
@@ -158,14 +158,14 @@ class Login extends React.Component {
             console.log(props);
             if (this.state.loggedIn) {
               return (
-                <Redirect to={{ pathname: props.location.state.redirectTo }} />
+                <Redirect to={{ pathname: this.props.location.state.redirectTo }} />
               );
             } else {
               return (
                 <LoginForm
                   _login={this._login}
                   _googleSignin={this._googleSignin}
-                  redirectAfterLogin={props.location.state.redirectTo}
+                  redirectAfterLogin={this.props.location.state.redirectTo}
                 />
               );
             }
