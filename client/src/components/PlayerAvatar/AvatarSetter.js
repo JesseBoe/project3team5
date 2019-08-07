@@ -20,9 +20,9 @@ class AvatarSetter extends Component {
   componentWillUpdate(nextProps, nextState) {
     // only call onChange when the state actually changes - avoid infinite recursion
     if (
-      this.state.RobotAntenna == nextState.RobotAntenna &&
-      this.state.RobotColor == nextState.RobotColor &&
-      this.state.RobotImage == nextState.RobotImage
+      this.state.RobotAntenna === nextState.RobotAntenna &&
+      this.state.RobotColor === nextState.RobotColor &&
+      this.state.RobotImage === nextState.RobotImage
     ) {
       return;
     } else if (this.props.onChange) {

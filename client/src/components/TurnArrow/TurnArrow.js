@@ -5,7 +5,7 @@ import DownArrow from "./ArrowDown.png"
 const TurnArrow = (props) => {
     return (
         <div className="TurnArrowContainer">
-            <img className="ArrowImage" style={{ width: "100%" }} src={DownArrow}></img>
+            <img alt="arrow" className="ArrowImage" style={{ width: "100%" }} src={DownArrow}></img>
         </div>
     )
 }
