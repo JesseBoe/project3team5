@@ -74,16 +74,16 @@ a {
     /* margin-left: 1.5%;
     margin-right:1.5%;
     background-size: 770%;
-  /* }
+  }
   .container{
     height:1000px
   }
   img{
     margin-bottom:10%;
   }
-} */
+}
 
-/* @media screen and (max-width: 812px) {
+@media screen and (max-width: 812px) {
   body {
       background-size: 750%;
   } 
@@ -146,4 +146,4 @@ a {
   .container{
     height:450px;
   }
-} * */
+} *
