@@ -26,7 +26,7 @@ module.exports = class Game {
         //Game has not started
         if (!this.hasStarted) {
             //Game is not full
-            if (this.numberOfPlayers <= 4) {
+            if (this.numberOfPlayers <= 3) {
                 //Player has not already joined?
                 if (this.players.indexOf(player) === -1) {
                     player.currentGame = this.id;

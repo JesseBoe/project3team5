@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import style from "./PlayerAvatar.css";
+import Avatar from "./PlayerAvatar";
 import NewAvatar from "./NewAvatar";
 import ArrowLeft from "./SplitImages/ArrowLeft.png";
 import ArrowRight from "./SplitImages/ArrowRight.png";
@@ -103,7 +105,6 @@ class AvatarSetter extends Component {
           <div className="col" style={{ paddingRight: "0px" }}>
             <div className="justify-content-center row">
               <img
-                alt="change antenna left"
                 onClick={() => {
                   this.changeAntenna("left");
                 }}
@@ -114,7 +115,6 @@ class AvatarSetter extends Component {
             </div>
             <div className="justify-content-center row">
               <img
-                alt="change robot left"
                 onClick={() => {
                   this.changeRobot("left");
                 }}
@@ -125,7 +125,6 @@ class AvatarSetter extends Component {
             </div>
             <div className="justify-content-center row">
               <img
-                alt="change color left"
                 onClick={() => {
                   this.changeColor("left");
                 }}
@@ -148,7 +147,6 @@ class AvatarSetter extends Component {
           <div className="col" style={{ paddingLeft: "0px" }}>
             <div className="justify-content-center row">
               <img
-                alt="change antenna right"
                 onClick={() => {
                   this.changeAntenna("right");
                 }}
@@ -159,7 +157,6 @@ class AvatarSetter extends Component {
             </div>
             <div className="justify-content-center row">
               <img
-                alt="change robot right"
                 onClick={() => {
                   this.changeRobot("right");
                 }}
@@ -170,7 +167,6 @@ class AvatarSetter extends Component {
             </div>
             <div className="justify-content-center row">
               <img
-                alt="change color right"
                 onClick={() => {
                   this.changeColor("right");
                 }}

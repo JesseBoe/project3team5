@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import keyCss from "./VirtualKeyboard.css"
+
 
 class VirtualKeyboard extends Component {
     alphabet1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
@@ -15,7 +17,7 @@ class VirtualKeyboard extends Component {
                 this.props.socket.emit("chooseLetter", letter);
             }
         }
-        else if (vowels.indexOf(letter) === -1) {
+        else if (vowels.indexOf(letter) == -1) {
             this.props.socket.emit("chooseLetter", letter);
         }
     }
@@ -34,7 +36,7 @@ class VirtualKeyboard extends Component {
         let vowels = ['A', 'E', 'I', 'O', 'U'];
         if (this.props.gameState.onlyVowels) {
             if (vowels.indexOf(letter) !== -1) {
-                if (this.props.gameState.disabledLetters.indexOf(letter) === -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
                     return true;
                 }
                 return false;
@@ -43,7 +45,7 @@ class VirtualKeyboard extends Component {
         }
         else {
             if (vowels.indexOf(letter) == -1) {
-                if (this.props.gameState.disabledLetters.indexOf(letter) === -1) {
+                if (this.props.gameState.disabledLetters.indexOf(letter) == -1) {
                     return true;
                 }
                 return false;

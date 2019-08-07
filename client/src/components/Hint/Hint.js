@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import style from "./Hint.css"
 
 class Hint extends Component {
     render() {

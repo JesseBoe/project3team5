@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import style from "./GameButton.css"
 
 class singleButton extends Component {
 

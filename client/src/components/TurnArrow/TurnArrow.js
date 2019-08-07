@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import style from "./TurnArrow.css"
 import DownArrow from "./ArrowDown.png"
 
 const TurnArrow = (props) => {
