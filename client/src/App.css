@@ -59,20 +59,20 @@ a {
    overflow-x: hidden;
    background-size: 180%;
  }
- .container {
+ /* .container {
   background:white;
   width: 100%;
   max-width: 960px;
   height:500px;
   overflow: scroll;
   padding:2%;
-}
+} */
 
  /* adjustment when viewed from each computer, ipad, phones, etc */
-@media screen and (max-width: 1100px) {
-  body {
+/* @media screen and (max-width: 1100px) {
+  body { */
     /* margin-left: 1.5%;
-    margin-right:1.5%; */
+    margin-right:1.5%;
     background-size: 770%;
   }
   .container{
@@ -146,4 +146,4 @@ a {
   .container{
     height:450px;
   }
-}
+} *
