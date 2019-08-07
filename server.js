@@ -115,11 +115,19 @@ io.on("connection", socket => {
 
   //Make a game!
   socket.on("createGame", () => {
+    player.reset();
     let game = new Game();
     games[game.id] = game;
     socket.emit("createGameResponse", game.id);
     syncGameDetails(game.id);
   });
+
+  socket.on("setPlayer", (data) => {
+    player.robotAntenna = data.robotAntenna;
+    player.robotBody = data.robotImage;
+    player.robotColor = data.robotColor;
+    player.username = data.username;
+  })
 
   //join a game!
   socket.on("joinGame", (gameid) => {
@@ -128,6 +136,7 @@ io.on("connection", socket => {
       games[player.currentGame].leaveGame(player);
       syncGameDetails(player.currentGame);
     }
+    player.reset();
     //If the game exists, join it
     if (games[gameid]) {
       games[gameid].joinGame(player);
@@ -266,6 +275,7 @@ io.on("connection", socket => {
       if (games[player.currentGame].getCurrentPlayerId() == player.id) { 
         //Game state is correct
         if (games[player.currentGame].gameState == "Selecting Consonant") { 
+          sendServerMessage(player.currentGame, player.username + " guessed the letter: " + letter);
           let showAtIndex = games[player.currentGame].showLetter(letter);
           games[player.currentGame].gameState = "Showing Letters";
           if (showAtIndex.length > 0) {
@@ -287,6 +297,7 @@ io.on("connection", socket => {
           }
         }
         if (games[player.currentGame].gameState == "Buy Vowel") {
+          sendServerMessage(player.currentGame, player.username + " bought the vowel: " + letter);
           player.cash -= 250;
           let showAtIndex = games[player.currentGame].showLetter(letter);
           games[player.currentGame].gameState = "Showing Letters";

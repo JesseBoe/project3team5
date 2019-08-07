@@ -16,11 +16,6 @@ const DisplayLinks = props => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/gameplay" className="nav-link">
-              Game Play
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link to="/" className="nav-link">
               Profile
             </Link>
@@ -73,7 +68,7 @@ class Login extends React.Component {
     super();
     this.state = {
       loggedIn: false,
-      user: null
+      user: null,
     };
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
@@ -81,7 +76,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     axios.get("/auth/user").then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       if (!!response.data.user) {
         console.log("THERE IS A USER");
         this.setState({
@@ -119,7 +114,7 @@ class Login extends React.Component {
         password
       })
       .then(response => {
-        console.log(response);
+        //console.log(response);
         if (response.status === 200) {
           // update the state
           this.setState({
@@ -132,7 +127,7 @@ class Login extends React.Component {
 
   render() {
     let redirect = null;
-    if (!this.props.location.pathname.startsWith("/login")) {
+    if (!this.props.location.pathname.startsWith("/login") && !this.props.location.pathname.startsWith("/signup")) {
       redirect = (
         <Redirect
           to={{
@@ -158,14 +153,14 @@ class Login extends React.Component {
             console.log(props);
             if (this.state.loggedIn) {
               return (
-                <Redirect to={{ pathname: props.location.state.redirectTo }} />
+                <Redirect to={{ pathname: this.state.redirectTo }} />
               );
             } else {
               return (
                 <LoginForm
                   _login={this._login}
                   _googleSignin={this._googleSignin}
-                  redirectAfterLogin={props.location.state.redirectTo}
+                  redirectAfterLogin={this.state.redirectTo}
                 />
               );
             }

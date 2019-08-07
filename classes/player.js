@@ -17,5 +17,13 @@ module.exports = class Player {
 
         //this might just be the ref to the player in the mongodb
         this.dbRef = "";
+
+        this.reset = () => {
+            this.currentGame = "";
+            this.ready = false;
+            this.cash = 0;
+            this.totalCash = 0;
+            this.dbRef = "";
+        }
     }
 }

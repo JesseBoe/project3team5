@@ -26,7 +26,7 @@ class Timer extends Component {
             var turnOver = this.state.TurnTime - 1 < 0;
             document.getElementById('timer').classList.remove("play");
             if (!turnOver) {
-                if (this.state.TurnTime != 1) {
+                if (this.state.TurnTime !== 1) {
                     setTimeout(() => {
                         document.getElementById('timer').classList.add("play");
 

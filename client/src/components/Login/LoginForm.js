@@ -35,14 +35,14 @@ class LoginForm extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />;
         } else {
             return (
-                <div className="modal-wrapper LoginForm"
-                    style={{
-                    // transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
-                    // opacity: props.show ? '1' : '0'
-                    }}>
+                <div className="modal-wrapper LoginForm">
+                    {/* style={{
+                    transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
+                    opacity: props.show ? '1' : '0'
+                    }}> */}
                     <div className="modal-header">
                         <h1>Login</h1>
-                        <span className="close-modal-btn" onClick={'/signup'}>×</span>
+
                         {/* <span className="close-modal-btn" onClick={props.close}>×</span> */}
                     </div>
                     <div className="modal-body">

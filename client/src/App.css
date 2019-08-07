@@ -1,6 +1,13 @@
-.App {
+body {
+   background-color: #69537d;
+   overflow-x: hidden;
+ }
+
+/* .App {
   text-align: center;
 }
+
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -58,7 +65,7 @@ a {
    background-color: #69537d;
    overflow-x: hidden;
    background-size: 180%;
- }
+ } */
  /* .container {
   background:white;
   width: 100%;
@@ -69,10 +76,8 @@ a {
 } */
 
  /* adjustment when viewed from each computer, ipad, phones, etc */
-@media screen and (max-width: 1100px) {
+/* @media screen and (max-width: 1100px) {
   body {
-    /* margin-left: 1.5%;
-    margin-right:1.5%; */
     background-size: 770%;
   }
   .container{
@@ -146,4 +151,4 @@ a {
   .container{
     height:450px;
   }
-}
+} */

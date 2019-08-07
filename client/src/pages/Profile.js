@@ -1,14 +1,10 @@
-import Navbar from "../components/Navbar/Navbar";
 import React from "react";
 import { Jumbotron } from "reactstrap";
 import { Col, Row, Container } from "../components/Grid";
-import { Link } from "react-router-dom";
-import { PromiseProvider } from "mongoose";
-import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
 import NewAvatar from "../components/PlayerAvatar/NewAvatar";
 
 const Profile = props => {
-  console.log(props.user);
+  //console.log(props.user);
   console.log(props.user.robot.RobotColor);
   return (
     <Container>
