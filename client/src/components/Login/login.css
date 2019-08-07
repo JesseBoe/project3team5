@@ -1,0 +1,189 @@
+
+/* * {
+    border: 1px red solid;
+} */
+
+.modal-wrapper {
+    background: #fcfbfe;
+    border: 5px solid #1d1135;
+    box-shadow: 0 5px 8px 0 rgba(194, 161, 161, 0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    margin: 25px auto 0;
+    transition: all .8s;
+    width: 40%;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+}
+
+.modal-header {
+    background: #7649fe;
+    height: 100px;
+    width: 100%;
+    padding: 5px 20px;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 5px solid #1d1135;
+    display: inline-block;
+}
+
+.modal-header h1 {
+    display: inline-block;
+    width: 100%;
+    color: #1d1135;
+    font-size: 72px;
+    font-weight: 700;
+    /* margin-top: -10px; */
+}
+
+.modal-body {
+    background: #fcfbfe;
+    color: #1d1135;
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.modal-footer {
+    background: #7649fe;
+    border-top: 5px solid #1d1135;
+    height: 60px;
+    padding: 15px;
+    text-align: center;
+    margin: auto;
+}
+
+.footerText {
+    display: inline-block;
+    width: 100%;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    color: #1d1135;
+    /* margin-top: 10px; */
+}
+
+.submit-button {
+    display: inline-block;
+    margin-top: 30px;
+    background: #7649fe;
+    color: #1d1135;
+    width: 45%;
+    height: 42px;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.login-image {
+    display: inline-block;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.close-modal-btn {
+    color: #1d1135;
+    float: right;
+    cursor: pointer;
+    font-size: 36px;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: -90px;
+}
+
+.close-modal-btn:hover {
+    color: black;
+}
+
+.btn-cancel, .btn-continue {
+    background: coral;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 10px;
+}
+
+.btn-cancel {
+    background-color: #b71c1c;
+    float: left;
+}
+
+.btn-continue {
+    background-color: #1b5e20;
+    float: right;
+}
+
+.back-drop {
+    background-color: rgba(48, 49, 48, 0.42);
+    height: 100%;
+    position: fixed;
+    transition: all 1.3s;
+    width: 100%;
+}
+
+.open-modal-btn {
+    margin: 15px;
+    padding: 10px;
+    font-weight: bold;
+}
+     
+#label-username {
+    float: left;
+    color: #1d1135;
+    font-family: 'Roboto Slab', serif;
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+#label-password {
+    float: left;
+    color: #1d1135;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 24px;
+}
+#label-confirm {
+    float: left;
+    color: #1d1135;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 24px;
+}
+
+#password-input {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #1d1135;
+}
+
+#username-input {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #1d1135;
+}
+
+#confirmpass-input {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #1d1135;
+}
+
+.inputField {
+   margin-top: 25px;
+}
+
+.modal-body {
+    modal-top: 10px;
+ }
+
+#modalForm {
+    width: 90%;
+    margin-left: 25px;
+}
