@@ -115,6 +115,7 @@ io.on("connection", socket => {
 
   //Make a game!
   socket.on("createGame", () => {
+    player.reset();
     let game = new Game();
     games[game.id] = game;
     socket.emit("createGameResponse", game.id);
