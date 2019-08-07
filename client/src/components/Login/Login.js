@@ -1,8 +1,9 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import SignupForm from "../SignupForm";
+import SignupForm from "./SignupForm";
 import axios from "axios";
 import { Route, Link, Redirect, withRouter } from "react-router-dom";
+import "./login.css";
 
 const DisplayLinks = props => {
   if (props.loggedIn) {

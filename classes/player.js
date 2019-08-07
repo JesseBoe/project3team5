@@ -5,11 +5,11 @@ module.exports = class Player {
         //This comes from the login thingy
         this.username = 'No_Name';
         this.id = shortID.generate();
-        this.room = "null";
         this.robotColor = 'Red';
         this.robotAntenna = '01';
         this.robotBody = '01';
         this.cash = 0;
+        this.totalCash = 0;
         this.ready = false;
 
         //This is the current game ID

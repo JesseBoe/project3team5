@@ -1,0 +1,20 @@
+.TurnArrowContainer {
+    position: absolute;
+    z-index: 0;
+    top: -138px;
+    animation: bouncey .5s ease-in-out infinite ;
+}
+
+@keyframes bouncey {
+    0% {
+        transform: translateY(-3px);
+    }
+
+    50% {
+        transform: translateY(-16px);
+    }
+
+    100% {
+        transform: translateY(-3px);
+    }
+}

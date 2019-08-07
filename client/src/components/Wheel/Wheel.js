@@ -3,11 +3,20 @@ import Winwheel from './Winwheel';
 import Style from './wheel.css'
 
 class Wheel extends Component {
+
+
     constructor() {
         super();
         this.theWheel = null;;
     }
     componentDidMount() {
+
+        this.props.socket.on("spin", (stopAngle) => {
+            this.theWheel.rotationAngle = (this.theWheel.rotationAngle % 360); 
+            this.theWheel.YOLO(stopAngle);
+            this.theWheel.startAnimation();
+        });
+
         this.theWheel = new Winwheel( {
             'canvasId'    : 'canvas',
             'lineWidth'   : 3,
@@ -75,14 +84,17 @@ class Wheel extends Component {
     }
 
     spinResult = () => {
+        this.isSpinning = false;
         let prizeSegment = this.theWheel.getIndicatedSegment();
-        if (prizeSegment.text === '  BANKRUPT') {
-            alert("OMG. You've gone Bankrupt!");
-        } else if (prizeSegment.text === 'BANKRUPT') {
-            alert("You've lost your turn ");
-        } else {
-            alert("You have won " + prizeSegment.text);       
-        }
+        // if (prizeSegment.text === '  BANKRUPT') {
+        //     alert("OMG. You've gone Bankrupt!");
+        // } else if (prizeSegment.text === 'BANKRUPT') {
+        //     alert("You've lost your turn ");
+        // } else {
+        //     alert("You have won " + prizeSegment.text);       
+        // }
+
+        this.props.socket.emit("spinResult", prizeSegment.text);
     }
     render() {
         return (

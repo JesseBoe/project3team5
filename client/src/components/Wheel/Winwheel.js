@@ -578,6 +578,35 @@ Winwheel.prototype.drawSegmentImages = function()
     }
 }
 
+// Winwheel.prototype.YOLOFUNC = function(_angle) {
+//     if (this.wheelImage != null) {
+//         // Get the centerX and centerY in to variables, adjust by the scaleFactor.
+//         let centerX = (this.centerX * this.scaleFactor);
+//         let centerY = (this.centerY * this.scaleFactor);
+
+//         // Get the scaled width and height of the image.
+//         let scaledWidth = (this.wheelImage.width * this.scaleFactor);
+//         let scaledHeight = (this.wheelImage.height * this.scaleFactor);
+
+//         // Work out the correct X and Y to draw the image at. We need to get the center point of the image
+//         // aligned over the center point of the wheel, we can't just place it at 0, 0.
+//         let imageLeft = (centerX - (scaledWidth / 2));
+//         let imageTop = (centerY - (scaledHeight / 2));
+
+//         // Rotate and then draw the wheel.
+//         // We must rotate by the rotationAngle before drawing to ensure that image wheels will spin.
+//         this.ctx.save();
+//         this.ctx.translate(centerX, centerY);
+//         this.ctx.rotate(this.degToRad(_angle));
+//         this.ctx.translate(-centerX, -centerY);
+
+//         // Draw the image passing the scaled width and height which will ensure the image will be responsive.
+//         this.ctx.drawImage(this.wheelImage, imageLeft, imageTop, scaledWidth, scaledHeight);
+
+//         this.ctx.restore();
+//     }
+// }
+
 // ===================================================================================================================================
 // This function draws the wheel on the page by rendering the segments on the canvas.
 // ===================================================================================================================================
@@ -1764,6 +1793,12 @@ Winwheel.prototype.resumeAnimation = function()
 // before it starts. This allows the developer to change the animation properties after the wheel has been created
 // and have the animation use the new values of the animation properties.
 // ===================================================================================================================================
+var superStopAngle = 0;
+
+Winwheel.prototype.YOLO = function(stopAtAngle) {
+    this.superStopAngle = stopAtAngle;
+}
+
 Winwheel.prototype.computeAnimation = function()
 {
     if (this.animation) {
@@ -1810,7 +1845,7 @@ Winwheel.prototype.computeAnimation = function()
             if (this.animation.easing === null) {
                 this.animation.easing = 'Power3.easeOut';     // This easing is fast start and slows over time.
             }
-
+            this.animation.stopAngle = this.superStopAngle;
             if (this.animation.stopAngle === null) {
                 // If the stop angle has not been specified then pick random between 0 and 359.
                 this.animation._stopAngle = Math.floor((Math.random() * 359));
