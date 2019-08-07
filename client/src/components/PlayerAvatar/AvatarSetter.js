@@ -104,7 +104,7 @@ class AvatarSetter extends Component {
         <div className="d-flex justify-content-center row">
           <div className="col" style={{ paddingRight: "0px" }}>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeAntenna("left");
                 }}
@@ -114,7 +114,7 @@ class AvatarSetter extends Component {
               />
             </div>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeRobot("left");
                 }}
@@ -124,7 +124,7 @@ class AvatarSetter extends Component {
               />
             </div>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeColor("left");
                 }}
@@ -146,7 +146,7 @@ class AvatarSetter extends Component {
           </div>
           <div className="col" style={{ paddingLeft: "0px" }}>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeAntenna("right");
                 }}
@@ -156,7 +156,7 @@ class AvatarSetter extends Component {
               />
             </div>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeRobot("right");
                 }}
@@ -166,7 +166,7 @@ class AvatarSetter extends Component {
               />
             </div>
             <div className="justify-content-center row">
-              <img
+              <img alt="robot"
                 onClick={() => {
                   this.changeColor("right");
                 }}

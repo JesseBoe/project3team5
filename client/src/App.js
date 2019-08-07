@@ -17,10 +17,27 @@ if (window.location.host === "localhost:3000") {
   local = true;
 }
 
+
+
+
 class App extends Component {
   socket = local
     ? openSocket("localhost:3001")
     : openSocket(window.location.host);
+
+
+  componentDidMount() {
+
+    window.onunload = function () {
+      console.log("Do you really want to close?");
+    };
+  
+  window.addEventListener("onunload", function (e) {
+    var confirmationMessage = "the dude abides";
+    this.console.log(confirmationMessage); 
+    return confirmationMessage;                            //Webkit, Safari, Chrome
+    });
+  }
 
   render() {
     return (

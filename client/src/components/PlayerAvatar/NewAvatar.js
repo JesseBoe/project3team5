@@ -10,22 +10,22 @@ function importAll(r) {
 const NewAvatar = (props) => {
 
     let colorToRoation = (color) => {
-        if (color == "Blue") {
+        if (color === "Blue") {
             return 90;
         }
-        if (color == "Purple") {
+        if (color === "Purple") {
             return 130;
         }
-        if (color == "Orange") {
+        if (color === "Orange") {
             return -90;
         }
-        if (color == "Pink") {
+        if (color === "Pink") {
             return -135;
         }
-        if (color == "Green") {
+        if (color === "Green") {
             return 45;
         }
-        if (color == "Red") {
+        if (color === "Red") {
             return 235;
         }
     }
@@ -33,10 +33,10 @@ const NewAvatar = (props) => {
     return (
         <div className="unselect" style={{ position: "relative", width: "140px", height: "140px", left: "0", top: "0" }}>
             <span style={{ width: "140px" }}></span>
-            <img className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + colorToRoation(props.RobotColor) + "deg)" }} src={images["Robot-" + props.RobotImage + "_b.png"]}></img>
-            <img className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + colorToRoation(props.RobotColor) + "deg)" }} src={images["Antenna-" + props.RobotAntenna + "_b.png"]}></img>
-            <img className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Robot-" + props.RobotImage + ".png"]}></img>
-            <img className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Antenna-" + props.RobotAntenna + ".png"]}></img>
+            <img alt="robot" className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + colorToRoation(props.RobotColor) + "deg)" }} src={images["Robot-" + props.RobotImage + "_b.png"]}></img>
+            <img alt="robot" className="colorChange robot" style={{ position: "absolute", left: "0", top: "0", filter: "hue-rotate(" + colorToRoation(props.RobotColor) + "deg)" }} src={images["Antenna-" + props.RobotAntenna + "_b.png"]}></img>
+            <img alt="robot" className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Robot-" + props.RobotImage + ".png"]}></img>
+            <img alt="robot" className="robot" style={{ position: "absolute", left: "0", top: "0" }} src={images["Antenna-" + props.RobotAntenna + ".png"]}></img>
         </div>
     )
 }
