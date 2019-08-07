@@ -20,7 +20,7 @@ class joinGameForum extends Component {
     {
         return <div>
             <div>
-                <label for="roomText">Room Id:</label>
+                <label htmlFor="roomText">Room Id:</label>
                 <input className="form-control form-control-lg" onChange={this.handleChange} id="roomText" type="text" placeholder="room id"/>
             </div>
             <div>

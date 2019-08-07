@@ -6,7 +6,7 @@ class Hint extends Component {
         return (
             <div className="d-flex justify-content-center" style={{ width: "100%" }}>
                 <div className="hint d-flex justify-content-center">>
-                    <span style={{ color: "#ba1e68", fontSize: "28px" }}>Hint</span>
+                    <span style={{ color: "#ba1e68", fontSize: "28px" }}>{this.props.hint}</span>
                 </div>
             </div>
         )
