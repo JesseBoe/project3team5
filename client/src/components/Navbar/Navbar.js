@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import logo from "./SayWhatLogo.svg"
+import logo from "./SayWhatLogo.svg";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
 

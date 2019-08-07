@@ -2,21 +2,41 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "../SignupForm";
 import axios from "axios";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Link, Redirect, withRouter } from "react-router-dom";
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
       <nav className="navbar">
         <ul className="nav">
-          {/* <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li> */}
           <li>
             <Link to="#" className="nav-link" onClick={props.logout}>
               Logout
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/gameplay" className="nav-link">
+              Game Play
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Profile
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/players" className="nav-link">
+              Players
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/create" className="nav-link">
+              Create
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/join" className="nav-link">
+              Join
             </Link>
           </li>
         </ul>
@@ -99,7 +119,6 @@ class Login extends React.Component {
       })
       .then(response => {
         console.log(response);
-        console.log("hello repsonse!");
         if (response.status === 200) {
           // update the state
           this.setState({
@@ -111,45 +130,50 @@ class Login extends React.Component {
   }
 
   render() {
+    let redirect = null;
+    if (!this.props.location.pathname.startsWith("/login")) {
+      redirect = (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { redirectTo: this.props.location.pathname }
+          }}
+        />
+      );
+    }
     return (
       <div className="LoginPage">
         {/* LINKS to our different 'pages' */}
         <DisplayLinks logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
+
+        {this.state.loggedIn ? this.props.children(this.state.user) : redirect}
+
         <Route
-          exact
-          path="/"
-          render={() => {
-            console.log(this.state.loggedIn);
-            if (!this.state.loggedIn) {
-              return <Redirect to={{ pathname: "/login" }} />;
-            } else {
-              return this.props.children;
-            }
-          }}
-        />
-        <Route
-          exact
+          // exact
           path="/login"
-          render={() => {
+          render={props => {
+            console.log(props);
             if (this.state.loggedIn) {
-              return <Redirect to={{ pathname: "/" }} />;
+              return (
+                <Redirect to={{ pathname: props.location.state.redirectTo }} />
+              );
             } else {
               return (
                 <LoginForm
                   _login={this._login}
                   _googleSignin={this._googleSignin}
+                  redirectAfterLogin={props.location.state.redirectTo}
                 />
               );
             }
           }}
         />
         <Route exact path="/signup" component={SignupForm} />
-        {/* <Loginform _login={this._login} /> */}
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
