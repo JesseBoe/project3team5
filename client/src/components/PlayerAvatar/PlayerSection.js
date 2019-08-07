@@ -7,7 +7,7 @@ class PlayerSection extends Component {
 
     count = -1;
     showarrow = () => {
-        if (this.count == this.props.gameData.whosTurn) {
+        if (this.count === this.props.gameData.whosTurn) {
             if (!this.props.hideArrow) {
                 return true;
             }

@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import openSocket from "socket.io-client";
 import Login from "./components/Login/Login";
-import Wheel from "./components/Wheel/Wheel";
 
 import SayWhat from "./components/SayWhat";
 import WaitingRoom from "./components/WaitingRoom/WaitingRoom";
 import JoinGameForum from "./components/JoinGameForum/JoinGameForum";
 
 import Players from "./pages/Players";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import NoMatch from "./pages/NoMatch";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import playerDetail from "./pages/playerDetail";
 import Profile from "./pages/Profile";
 
 let local = false;
-if (window.location.host == "localhost:3000") {
+if (window.location.host === "localhost:3000") {
   local = true;
 }
 
