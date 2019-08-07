@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import style from "./Letter.css";
 
 class Letter extends Component {
 

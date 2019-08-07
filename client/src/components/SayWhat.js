@@ -9,11 +9,6 @@ import Hint from "./Hint/Hint"
 import PlayerSection from "./PlayerAvatar/PlayerSection"
 import Wheel from "./Wheel/Wheel";
 import PuzzleSolve from "./PuzzleSolve/PuzzleSolve";
-import TurnArrow from "./TurnArrow/TurnArrow";
-import style  from "./SayWhat.css";
-
-
-
 
 class SayWhat extends Component {
 
