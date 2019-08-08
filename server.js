@@ -341,6 +341,7 @@ io.on("connection", socket => {
       console.log("END GAME");
       games[player.currentGame].endRound();
       games[player.currentGame].endGame();
+      sendServerMessage(player.currentGame, "The game is over! " + games[player.currentGame].player[0].username + " wins!");
     }
     else {
       games[player.currentGame].endRound();

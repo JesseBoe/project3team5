@@ -1,4 +1,5 @@
 var shortID = require('shortid');
+const phrases = require('./words');
 
 module.exports = class Game {
     constructor() {
@@ -8,7 +9,10 @@ module.exports = class Game {
         this.gameStateEnum = ["Unstarted", "Spinning Wheel", "Wheel Is Spinning", "Selecting Consonant", "Selecting Action", "Buy Vowel", "Solving", "Showing Letters", "Finished"]
         this.numberOfPlayers = 0;
         this.whosTurn = -1;
+        this.turnCount = 0;
         this.hasStarted = false;
+        this.consonantsGuessed = 0;
+        this.vowelsGuessed = 0;
 
         this.players = [];
 
@@ -40,6 +44,9 @@ module.exports = class Game {
     }
 
     start() {
+        let obj = this.getRandomPhrase();
+        this.puzzleCheat = obj.word;
+        this.hint = obj.hint;
         this.puzzle = this.processPuzzle(this.puzzleCheat);
         this.hasStarted = true;
         this.gameState = "Spinning Wheel";
@@ -52,14 +59,18 @@ module.exports = class Game {
 
     nextTurn() {
         this.whosTurn++;
+        this.turnCount++;
         if (this.whosTurn >= this.numberOfPlayers) {
             this.whosTurn = 0;
         }
-        this.gameState = "Spinning Wheel";
+        if (this.turnCount > this.numberOfPlayers) {
+            this.gameState = "Selecting Action";
+        } else {
+            this.gameState = "Spinning Wheel";
+        }
     }
 
-    processPuzzle(str) {
-        
+    processPuzzle(str) {        
         let hiddenString = "";
         str.split('').map((letter) => {
             if (this.isLetter(letter)) {
@@ -68,7 +79,6 @@ module.exports = class Game {
                 hiddenString = hiddenString + letter;
             }
         })
-
         return hiddenString;
     }
 
@@ -94,17 +104,23 @@ module.exports = class Game {
     }
 
     endGame() {
-        //todo
+        this.players.sort(function(a, b) {return b.totalCash - a.totalCash});
+    }
 
-        //Calcuclate who has the most score.
-        
-
+    getRandomPhrase() {
+        let rnd = Math.floor(phrases.length * Math.random());
+        return phrases[rnd];
     }
 
     getNewPuzzle() {
-        this.puzzleCheat = "Luke, I am your father!";
+        let obj = this.getRandomPhrase();
+        this.puzzleCheat = obj.word;
+        this.hint = obj.hint;
         this.puzzle = this.processPuzzle(this.puzzleCheat);
         this.disabledLetters = [];
+        this.turnCount = 0;
+        this.consonantsGuessed = 0;
+        this.vowelsGuessed = 0;
         this.onlyVowels = false;
         this.gameState = "Spinning Wheel";
         this.round++;
@@ -113,6 +129,13 @@ module.exports = class Game {
 
     showLetter(letter) {
         if (this.disabledLetters.indexOf(letter) == -1) {
+            let vowels = ['A', 'E', 'I', 'O', 'U'];
+            if (vowels.indexOf(letter) !== -1) {
+                this.vowelsGuessed++;
+            }  
+            else {
+                this.consonantsGuessed++;
+            }
             this.disabledLetters.push(letter);
             let arr = this.puzzleCheat.split('');
             let count = 0;

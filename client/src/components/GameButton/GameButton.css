@@ -19,6 +19,20 @@
   transition: all .15s ease-in-out; 
 }
 
+.rcorners3 {
+  border-radius: 10px;
+  border: 2px solid #ba1e68;
+  background: #1d1135;
+  padding: 18px; 
+  width: 240px;
+  height: 80px;
+  cursor: pointer;
+  transition: all .15s ease-in-out; 
+}
+
+.rcorners3:active {
+    transform: scale(.95);
+}
 
 
 .rcorners1:active {

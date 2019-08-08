@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   {word: "Here's looking at you kid", hint:"Casablanca"},
   {word: "May the Force be with you", hint:"Star Wars"},
   {word: "you talking to me?", hint:"Taxi Driver"},
@@ -12,8 +12,4 @@ export default [
   {word: "I'd like to make a toast to the happy couple", hint: "Speech"},
   {word: "What's good for the good is good for the gander", hint: "good for one, good for all"},
   {word: "As happy as a clam at high tide", hint:"very happy"},
-  
-
-
-  
 ];

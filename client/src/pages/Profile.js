@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
 import Navbar from "../components/Navbar/Navbar";
 import NewAvatar from "../components/PlayerAvatar/NewAvatar";
+import Button from "../components/GameButton/WideButton";
+import quickStyle from "./quickStyle.css";
 
 class Players extends Component {
   constructor(props) {
@@ -61,6 +63,13 @@ class Players extends Component {
         .catch(err => console.log(err));
     }
   };
+
+  handleRedirect = (path) => {
+    this.redirectTo = path;
+    this.forceUpdate();
+  }
+
+  redirectTo = ""
 
   render() {
     return (
@@ -135,6 +144,16 @@ class Players extends Component {
             </Jumbotron>
           </Col>
         </Row>
+
+        <div className=" d-flex justify-content-center" style={{ marginTop: "2%" }}>
+          <Button func={()=> {this.handleRedirect('/create')}} color="#ba1e68" text={'CREATE GAME'} />
+        </div>
+        <div className=" d-flex justify-content-center" style={{ marginTop: "2%" }}>
+          <Button func={() => { this.handleRedirect('/join') }} color="#ba1e68" text={'JOIN GAME'} />
+        </div>
+
+        {this.redirectTo != "" ? <Redirect to={this.redirectTo} /> : ""}
+
       </Container>
     );
   }
