@@ -1,37 +1,31 @@
 
-/* * {
-    border: 1px red solid;
-} */
-
 .modal-wrapper {
     background: #fcfbfe;
-    border: 5px solid #1d1135;
+    border: 5px solid #7649fe;
     box-shadow: 0 5px 8px 0 rgba(194, 161, 161, 0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     margin: 25px auto 0;
     transition: all .8s;
-    width: 40%;
+    width: 450px;
     font-family: 'Roboto Slab', serif;
     text-align: center;
 }
 
 .modal-header {
-    background: #7649fe;
-    height: 100px;
+    background:  #1d1135; 
+    height: 80px;
     width: 100%;
     padding: 5px 20px;
     text-align: center;
     font-family: 'Roboto Slab', serif;
-    border-bottom: 5px solid #1d1135;
+    border-bottom: 5px solid #7649fe;
     display: inline-block;
 }
 
 .modal-header h1 {
     display: inline-block;
     width: 100%;
-    color: #1d1135;
-    font-size: 72px;
-    font-weight: 700;
-    /* margin-top: -10px; */
+    color: #fcfbfe;
+    font-size: 52px;
 }
 
 .modal-body {
@@ -44,8 +38,8 @@
 }
 
 .modal-footer {
-    background: #7649fe;
-    border-top: 5px solid #1d1135;
+    background: #1d1135;
+    border-top: 5px solid #7649fe;
     height: 60px;
     padding: 15px;
     text-align: center;
@@ -58,74 +52,37 @@
     font-size: 24px;
     font-weight: 800;
     text-align: center;
-    color: #1d1135;
-    /* margin-top: 10px; */
+    background: #1d1135;
+    color: #fcfbfe;
 }
+.submitBtnText {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    background: #1d1135;
+    color: #fcfbfe;
+}
+
 
 .submit-button {
     display: inline-block;
     margin-top: 30px;
-    background: #7649fe;
-    color: #1d1135;
+    background: #1d1135;
+    color: #fcfbfe;
     width: 45%;
     height: 42px;
     font-size: 24px;
     font-weight: 800;
     text-align: center;
+    vertical-align: middle;
+    border: 5px solid #7649fe;
 }
 
 .login-image {
     display: inline-block;
     padding-top: 25px;
     padding-bottom: 25px;
-}
-
-.close-modal-btn {
-    color: #1d1135;
-    float: right;
-    cursor: pointer;
-    font-size: 36px;
-    font-weight: 700;
-    display: inline-block;
-    margin-top: -90px;
-}
-
-.close-modal-btn:hover {
-    color: black;
-}
-
-.btn-cancel, .btn-continue {
-    background: coral;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    outline: none;
-    padding: 10px;
-}
-
-.btn-cancel {
-    background-color: #b71c1c;
-    float: left;
-}
-
-.btn-continue {
-    background-color: #1b5e20;
-    float: right;
-}
-
-.back-drop {
-    background-color: rgba(48, 49, 48, 0.42);
-    height: 100%;
-    position: fixed;
-    transition: all 1.3s;
-    width: 100%;
-}
-
-.open-modal-btn {
-    margin: 15px;
-    padding: 10px;
-    font-weight: bold;
 }
      
 #label-username {
