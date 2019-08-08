@@ -16,18 +16,8 @@ const DisplayLinks = props => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/gameplay" className="nav-link">
-              Game Play
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link to="/" className="nav-link">
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/players" className="nav-link">
-              Edit Info
+              Profile/Edit
             </Link>
           </li>
           <li className="nav-item">
