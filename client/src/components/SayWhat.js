@@ -13,8 +13,6 @@ import TurnArrow from "./TurnArrow/TurnArrow";
 import style  from "./SayWhat.css";
 
 
-
-
 class SayWhat extends Component {
 
     gameData = "";
@@ -77,61 +75,52 @@ class SayWhat extends Component {
         }
         return false;
     }
-    version = 2;
 
     render() {
         if (this.gameData !== "") {
-            if (this.version == 1) {
-                return (
-                    <div style={{ height: "auto" }}>
-                        <Navbar />
-                        <div className="container" style={{ maxWidth: "98%" }}>
-                            <div style={{ position: 'fixed', width: '97%', height: '600px', zIndex: (this.isPuzzleSolveOnScreen() ? 1 : -1), overflow: 'hidden' }}>
-                                <div className={this.isPuzzleSolveOnScreen() ? "puzzleSolveOffScreen puzzleSolveOnScreen" : "puzzleSolveOffScreen"}>
-                                    <PuzzleSolve socket={this.props.socket} puzzle={this.gameData.puzzle} />
+            return (
+                <div style={{ height: "auto" }}>
+                    <div className="container" style={{ maxWidth: "98%" }}>
+                        <div style={{ position: 'fixed', width: '97%', height: '600px', zIndex: (this.isPuzzleSolveOnScreen() ? 1 : -1), overflow: 'hidden' }}>
+                            <div className={this.isPuzzleSolveOnScreen() ? "puzzleSolveOffScreen puzzleSolveOnScreen" : "puzzleSolveOffScreen"}>
+                                <PuzzleSolve socket={this.props.socket} puzzle={this.gameData.puzzle} />
+                            </div>
+                        </div>
+                        <div className="row h-100">
+                            <div className="col-6 left" style={{ overflow: "hidden" }}>
+                                <div>
+                                    <div style={{ height: "320px" }} className="d-flex align-items-center">
+                                        <PuzzleBox puzzle={this.gameData.puzzle} />
+                                    </div>
+                                </div>
+                                <div style={{ marginTop: "10px" }}>
+                                    <Hint hint={this.gameData.hint} />
+                                </div>
+                                <div style={{ marginTop: "153px" }}>
+                                    <PlayerSection hideArrow={this.hideArrow} gameData={this.gameData} />
+                                </div>
+                                <div style={{ position: "relative" }}>
+                                    <div className={this.isKeyboardOnScreen() ? "keyboardOffScreen keyboardOnScreen" : "keyboardOffScreen"}>
+                                        <VirtualKeyboard socket={this.props.socket} gameState={this.gameData} />
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row h-100">
-                                <div className="col-6 left" style={{ overflow: "hidden" }}>
-                                    <div>
-                                        <div style={{ height: "320px" }} className="d-flex align-items-center">
-                                            <PuzzleBox puzzle={this.gameData.puzzle} />
-                                        </div>
-                                    </div>
-                                    <div style={{ marginTop: "10px" }}>
-                                        <Hint hint={this.gameData.hint} />
-                                    </div>
-                                    <div style={{ marginTop: "153px" }}>
-                                        <PlayerSection hideArrow={this.hideArrow} gameData={this.gameData} />
-                                    </div>
-                                    <div style={{ position: "relative" }}>
-                                        <div className={this.isKeyboardOnScreen() ? "keyboardOffScreen keyboardOnScreen" : "keyboardOffScreen"}>
-                                            <VirtualKeyboard socket={this.props.socket} gameState={this.gameData} />
-                                        </div>
-                                    </div>
+                            <div className="col-6 right">
+                                <div style={{ position: "absolute", right: 140, top: 15 }}>
+                                    <Timer />
                                 </div>
-                                <div className="col-6 right">
-                                    <div style={{ position: "absolute", right: 140, top: 15 }}>
-                                        <Timer />
-                                    </div>
-                                    <div className="d-flex justify-content-center">
-                                        <Wheel socket={this.props.socket} />
-                                    </div>
-                                    <div style={{ marginTop: "0px" }}>
-                                        <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve} enabled={this.myturn} gameState={this.gameData.gameState} />
-                                        <Chat socket={this.props.socket} user={this.props.user} />
-                                    </div>
+                                <div className="d-flex justify-content-center">
+                                    <Wheel socket={this.props.socket} />
+                                </div>
+                                <div style={{ marginTop: "0px" }}>
+                                    <GameButton spinWheel={this.spinWheel} buyVowel={this.buyVowel} solve={this.solve} enabled={this.myturn} gameState={this.gameData.gameState} />
+                                    <Chat socket={this.props.socket} user={this.props.user} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                )
-            }
-            if (this.version = 2) {
-                return <div className="container h-100 w-100">
-                    <Navbar/>
                 </div>
-            }
+            )
         }
         return (<div></div>);
     }

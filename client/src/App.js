@@ -9,6 +9,7 @@ import JoinGameForum from "./components/JoinGameForum/JoinGameForum";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar/Navbar.js"
 
 let local = false;
 if (window.location.host === "localhost:3000") {
