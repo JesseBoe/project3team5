@@ -106,9 +106,9 @@ class SayWhat extends Component {
                                 </div>
                             </div>
                             <div className="col-6 right">
-                                <div style={{ position: "absolute", right: 140, top: 15 }}>
+                                {/* <div style={{ position: "absolute", right: 140, top: 15 }}>
                                     <Timer />
-                                </div>
+                                </div> */}
                                 <div className="d-flex justify-content-center">
                                     <Wheel socket={this.props.socket} />
                                 </div>

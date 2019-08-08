@@ -149,7 +149,7 @@ class Players extends Component {
           <Button func={()=> {this.handleRedirect('/create')}} color="#ba1e68" text={'CREATE GAME'} />
         </div>
         <div className=" d-flex justify-content-center" style={{ marginTop: "2%" }}>
-          <Button color="#ba1e68" text={'JOIN GAME'} />
+          <Button func={() => { this.handleRedirect('/join') }} color="#ba1e68" text={'JOIN GAME'} />
         </div>
 
         {this.redirectTo != "" ? <Redirect to={this.redirectTo} /> : ""}

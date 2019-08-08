@@ -16,9 +16,6 @@ if (window.location.host === "localhost:3000") {
   local = true;
 }
 
-
-
-
 class App extends Component {
   socket = local
     ? openSocket("localhost:3001")

@@ -1,4 +1,5 @@
 var shortID = require('shortid');
+const phrases = require('./words');
 
 module.exports = class Game {
     constructor() {
@@ -43,6 +44,9 @@ module.exports = class Game {
     }
 
     start() {
+        let obj = this.getRandomPhrase();
+        this.puzzleCheat = obj.word;
+        this.hint = obj.hint;
         this.puzzle = this.processPuzzle(this.puzzleCheat);
         this.hasStarted = true;
         this.gameState = "Spinning Wheel";
@@ -103,8 +107,15 @@ module.exports = class Game {
         this.players.sort(function(a, b) {return b.totalCash - a.totalCash});
     }
 
+    getRandomPhrase() {
+        let rnd = Math.floor(phrases.length * Math.random());
+        return phrases[rnd];
+    }
+
     getNewPuzzle() {
-        this.puzzleCheat = "Luke, I am your father!";
+        let obj = this.getRandomPhrase();
+        this.puzzleCheat = obj.word;
+        this.hint = obj.hint;
         this.puzzle = this.processPuzzle(this.puzzleCheat);
         this.disabledLetters = [];
         this.turnCount = 0;
