@@ -37,8 +37,9 @@ class Chat extends Component {
     }
 
     sendMessage() {
+        let screenName = this.props.user.firstName ? this.props.user.firstName : this.props.user.local.username;
         let data = {
-            name: this.props.user.local.username,
+            name: screenName,
             text: this.state.textField
         }
         this.setState({
