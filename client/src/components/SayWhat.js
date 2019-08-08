@@ -20,9 +20,10 @@ class SayWhat extends Component {
     myturn = false;
     keyboardOnScreen = true;
     hideArrow = false;
+    ArrowBecomeLetter = "";
 
     componentDidMount() {
-        let playerObj = { username: (this.props.user.local ? this.props.user.local.username : this.props.user.firstName), robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor };
+        let playerObj = { username: (this.props.user.firstName ? this.props.user.firstName : this.props.user.local.username), robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor };
         this.props.socket.emit("setPlayer", playerObj);
         this.props.socket.on("recieveMyPlayerData", (data) => {
             this.myId = data.id;
@@ -39,6 +40,9 @@ class SayWhat extends Component {
             }
             this.forceUpdate();
         });
+        this.props.socket.on("displayLetter", (letter) => {
+            this.ArrowBecomeLetter = letter;
+        })
         this.props.socket.emit("requestUpdate");
     }
 
@@ -97,7 +101,7 @@ class SayWhat extends Component {
                                     <Hint hint={this.gameData.hint} />
                                 </div>
                                 <div style={{ marginTop: "153px" }}>
-                                    <PlayerSection hideArrow={this.hideArrow} gameData={this.gameData} />
+                                    <PlayerSection arrowLetter={this.ArrowBecomeLetter} hideArrow={this.hideArrow} gameData={this.gameData} />
                                 </div>
                                 <div style={{ position: "relative" }}>
                                     <div className={this.isKeyboardOnScreen() ? "keyboardOffScreen keyboardOnScreen" : "keyboardOffScreen"}>

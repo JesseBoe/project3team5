@@ -275,9 +275,13 @@ io.on("connection", socket => {
       if (games[player.currentGame].getCurrentPlayerId() == player.id) { 
         //Game state is correct
         if (games[player.currentGame].gameState == "Selecting Consonant") { 
-          sendServerMessage(player.currentGame, player.username + " guessed the letter: " + letter);
+          sendServerMessage(player.currentGame, player.username + " guessed the letter: " + letter + "!");
+          games[player.currentGame].players.forEach(eachPlayer => {
+            sockets[eachPlayer.id].emit("displayLetter", letter);
+          });
           let showAtIndex = games[player.currentGame].showLetter(letter);
           games[player.currentGame].gameState = "Showing Letters";
+          syncGameDetails(player.currentGame);
           if (showAtIndex.length > 0) {
             let interval = setInterval(
               () => {
@@ -298,9 +302,13 @@ io.on("connection", socket => {
         }
         if (games[player.currentGame].gameState == "Buy Vowel") {
           sendServerMessage(player.currentGame, player.username + " bought the vowel: " + letter);
+          games[player.currentGame].players.forEach(eachPlayer => {
+            sockets[eachPlayer.id].emit("displayLetter", letter);
+          });
           player.cash -= 250;
           let showAtIndex = games[player.currentGame].showLetter(letter);
           games[player.currentGame].gameState = "Showing Letters";
+          syncGameDetails(player.currentGame);
           if (showAtIndex.length > 0) {
             let interval = setInterval(
               () => {
@@ -322,17 +330,22 @@ io.on("connection", socket => {
   })
 
   function showingLettersDone(passTurn) {
-    games[player.currentGame].onlyVowels = false;
-    if (games[player.currentGame].puzzleSolved()) {
-      roundOver();
-    }
-    else if (passTurn) {
-      games[player.currentGame].nextTurn();
-    }
-    else {
-      games[player.currentGame].gameState = "Selecting Action";
-    }
-    syncGameDetails(player.currentGame);
+    setTimeout(() => {
+      games[player.currentGame].onlyVowels = false;
+      games[player.currentGame].players.forEach(eachPlayer => {
+        sockets[eachPlayer.id].emit("displayLetter", "");
+      });
+      if (games[player.currentGame].puzzleSolved()) {
+        roundOver();
+      }
+      else if (passTurn) {
+        games[player.currentGame].nextTurn();
+      }
+      else {
+        games[player.currentGame].gameState = "Selecting Action";
+      }
+      syncGameDetails(player.currentGame);
+    }, 2000);
   }
 
   function roundOver() {
