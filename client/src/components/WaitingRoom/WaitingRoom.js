@@ -51,9 +51,9 @@ class WaitingRoom extends Component {
     render() {
         return <div className="container">
             <div>
-                <div style={{marginTop: "25%", textAlign: "center", fontSize: "48px", color:"white"}}>Waiting for players</div>
-                <div className= "d-flex justify-content-center" style={{marginTop: "20%"}}>
-                    <SingleButton color={this.localReady ? "#1eba57" : "#ba1e68"} func={this.toggleReady} text={this.localReady ? "Ready" : "Not Ready"}/>
+                <div style={{marginTop: "18%", textAlign: "center", fontSize: "48px", color:"white"}}>Waiting for players</div>
+                <div className= "d-flex justify-content-center" style={{marginTop: "10%"}}>
+                    <SingleButton color={this.localReady ? "#1eba57" : "#ba1e68"} func={this.toggleReady} text={this.localReady ? "Ready" : "Join Game"}/>
                 </div>
                 <PlayerSection gameData={gameData}/>
                 {this.redirectPath !== "" ? <Redirect to={{ pathname: this.redirectPath }} /> : ""}

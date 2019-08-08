@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import Navbar from "../Navbar/Navbar.js"
 import axios from "axios";
 import { Route, Link, Redirect, withRouter } from "react-router-dom";
 import "./login.css";
@@ -8,62 +9,64 @@ import "./login.css";
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
-      <nav className="navbar">
-        <ul className="nav">
-          <li>
-            <Link to="#" className="nav-link" onClick={props.logout}>
-              Logout
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/gameplay" className="nav-link">
-              Game Play
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/players" className="nav-link">
-              Players
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/create" className="nav-link">
-              Create
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/join" className="nav-link">
-              Join
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar logout={props.logout} loggedin={true}/>
+      // <nav className="navbar">
+      //   <ul className="nav">
+      //     <li>
+      //       <Link to="#" className="nav-link" onClick={props.logout}>
+      //         Logout
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/gameplay" className="nav-link">
+      //         Game Play
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/" className="nav-link">
+      //         Profile
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/players" className="nav-link">
+      //         Players
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/create" className="nav-link">
+      //         Create
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/join" className="nav-link">
+      //         Join
+      //       </Link>
+      //     </li>
+      //   </ul>
+      // </nav>
     );
   } else {
     return (
-      <nav className="navbar">
-        <ul className="nav">
-          {/* <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li> */}
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/signup" className="nav-link">
-              Sign Up
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar logout={props.logout} loggedin={false}/>
+      // <nav className="navbar">
+      //   <ul className="nav">
+      //     {/* <li className="nav-item">
+      //       <Link to="/" className="nav-link">
+      //         Home
+      //       </Link>
+      //     </li> */}
+      //     <li className="nav-item">
+      //       <Link to="/login" className="nav-link">
+      //         Login
+      //       </Link>
+      //     </li>
+      //     <li className="nav-item">
+      //       <Link to="/signup" className="nav-link">
+      //         Sign Up
+      //       </Link>
+      //     </li>
+      //   </ul>
+      // </nav>
     );
   }
 };

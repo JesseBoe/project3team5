@@ -1,6 +1,9 @@
+body{ 
+    height: 100%;
+}
 .keyboardOffScreen {
     position: absolute;
-    top: 150px;
+    top: 350px;
     left: 50%;
     margin-left: -340px;
     transition: top .6s ease-out;
