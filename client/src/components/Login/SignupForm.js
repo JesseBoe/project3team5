@@ -51,15 +51,9 @@ class SignupForm extends Component {
             />
         }
         return (
-            <div className="modal-wrapper SignupForm"
-                style={{
-                    // transform: props.show ? 'translateY(0vh)' : 'translateY(-0vh)',
-                    // opacity: props.show ? '1' : '0'
-                }}>
+            <div className="modal-wrapper SignupForm">
                 <div className="modal-header">
-                    <h1>Create Account</h1>
-                    <span className="close-modal-btn" onClick={'/signup'}>×</span>
-                    {/* <span className="close-modal-btn" onClick={props.close}>×</span> */}
+                    <h1>Register</h1>
                 </div>
                 <div className="modal-body">
                     <form name="signup" id="modalForm">
@@ -86,12 +80,12 @@ class SignupForm extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Enter password"
                             />
-                        </div>confirmpass-input
+                        </div>
                         <div className="inputField">
                             <label id="label-confirm" htmlFor="confirmPassword">Confirm Password:</label>
                             <input
                                 className="inputField form-control" 
-                                id="confirm-input"
+                                id="confirmpass-input"
                                 type="password"
                                 name="confirmPassword"
                                 value={this.state.confirmPassword}
@@ -102,7 +96,7 @@ class SignupForm extends Component {
                     </form>
                 </div>
                 <div> 
-                    <button className='submit-button btn-block' onClick={this.handleSubmit}>Register</button>
+                    <button className='submit-button btn-block submitBtnText' onClick={this.handleSubmit}>Submit</button>
                 </div>
                 <div>
                     <a className="login-image" href="/auth/google">
