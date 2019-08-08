@@ -22,16 +22,6 @@ const userSchema = new Schema ({
         RobotAntenna: { type: String, default: "01" },
         RobotColor: { type: String, default: "Red" } 
     }
-    // local: {
-	// 	email: { type: String, unique: true },
-	// 	password: { type: String }
-	// },
-	// google: {
-	// 	id: { type: String },
-	// 	photos: []
-	// },
-	// firstName: { type: String },
-	// lastName: { type: String }
 })
 
 // Define schema methods
