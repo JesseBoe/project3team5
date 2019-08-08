@@ -15,18 +15,15 @@ class WaitingRoom extends Component {
     this.forceUpdate();
   };
 
-  componentDidMount() {
-    console.log(this.props.user);
-    let playerObj = {
-      username: this.props.user.local
-        ? this.props.user.local.username
-        : this.props.user.firstName,
-      robotAntenna: this.props.user.robot.RobotAntenna,
-      robotImage: this.props.user.robot.RobotImage,
-      robotColor: this.props.user.robot.RobotColor,
-      id: this.props.user._id
-    };
-    this.props.socket.emit("setPlayer", playerObj);
+    toggleReady = () => {
+        this.props.socket.emit("toggleReady");
+        this.forceUpdate();
+    }
+    
+    componentDidMount() {
+        console.log(this.props.user);
+        let playerObj = { username: (this.props.user.firstName ? this.props.user.firstName : this.props.user.local.username), robotAntenna: this.props.user.robot.RobotAntenna, robotImage: this.props.user.robot.RobotImage, robotColor: this.props.user.robot.RobotColor};
+        this.props.socket.emit("setPlayer", playerObj);
 
     if (this.props.create) {
       this.props.socket.emit("createGame");

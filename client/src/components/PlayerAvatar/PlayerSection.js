@@ -26,7 +26,7 @@ class PlayerSection extends Component {
                         return (
                             <span key={player.username + this.count}>
                                 <div style={{ position: "relative", display: "inline-block" }}>
-                                    {this.showarrow() ? <TurnArrow/> : ""}
+                                    {this.showarrow() ? <TurnArrow arrowLetter={this.props.arrowLetter}/> : ""}
                                     {this.props.gameData.hasStarted ? "" : <div style={{ position: "absolute", width: "140px", top: '-64px', textAlign: 'center', fontSize: "24px", color: player.ready ? "#1eba57" : "#ba1e68" }}>{player.ready ? "Ready" : "Not Ready"}</div>}
                                     <div style={{ position: "absolute", color: "#ba1e68", top: "-34px", width: "140px", textAlign: "center", fontSize: "32px" }}>{player.username}</div>
                                     <NewAvatar RobotAntenna={player.robotAntenna} RobotColor={player.robotColor} RobotImage={player.robotBody} />

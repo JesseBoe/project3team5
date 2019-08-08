@@ -15,6 +15,7 @@ module.exports = class Game {
         this.vowelsGuessed = 0;
 
         this.players = [];
+        this.usedPuzzlesIndexes = [];
 
         this.puzzle = "";
         this.puzzleCheat = "Luke, I am your father!"
@@ -109,6 +110,12 @@ module.exports = class Game {
 
     getRandomPhrase() {
         let rnd = Math.floor(phrases.length * Math.random());
+        if (this.usedPuzzlesIndexes.indexOf(rnd) != -1) {
+            return this.getRandomPhrase();
+        }
+        else {
+            this.usedPuzzlesIndexes.push(rnd);
+        }
         return phrases[rnd];
     }
 
