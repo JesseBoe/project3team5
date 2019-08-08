@@ -7,9 +7,7 @@ import SayWhat from "./components/SayWhat";
 import WaitingRoom from "./components/WaitingRoom/WaitingRoom";
 import JoinGameForum from "./components/JoinGameForum/JoinGameForum";
 
-import Players from "./pages/Players";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import playerDetail from "./pages/playerDetail";
 import Profile from "./pages/Profile";
 
 let local = false;
@@ -51,8 +49,6 @@ class App extends Component {
                 path="/"
                 render={() => <Profile user={loggedInUser} />}
               />
-              <Route exact path="/players" render={() => <Players user={loggedInUser} />} />
-              <Route exact path="/players/:id" component={playerDetail} />
               <Route path="/room/:roomid" render={() => (<WaitingRoom create={false} socket={this.socket} user={loggedInUser}/>)}/>
               <Route exact path="/create" render={() => (<WaitingRoom create={true} socket={this.socket} user={loggedInUser}/>)} />
               <Route exact path="/join" render={() => (<JoinGameForum/>)}/>
