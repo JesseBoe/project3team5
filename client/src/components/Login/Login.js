@@ -78,10 +78,12 @@ class Login extends React.Component {
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
   }
+  waiting = true;
 
   componentDidMount() {
     axios.get("/auth/user").then(response => {
       console.log(response.data);
+      this.waiting = false;
       if (!!response.data.user) {
         console.log("THERE IS A USER");
         this.setState({
@@ -131,16 +133,21 @@ class Login extends React.Component {
   }
 
   render() {
+    if (this.waiting) {
+      return (<div></div>);
+    }
     let redirect = null;
     if (!this.props.location.pathname.startsWith("/login") && !this.props.location.pathname.startsWith("/signup")) {
-      redirect = (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { redirectTo: this.props.location.pathname }
-          }}
-        />
-      );
+      if (!this.state.loggedIn) {
+        redirect = (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { redirectTo: this.props.location.pathname }
+            }}
+          />
+        );
+      }
     }
     return (
       <div className="LoginPage">
