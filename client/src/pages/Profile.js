@@ -139,6 +139,8 @@ class Players extends Component {
                   <br />
                   Name: {this.props.user.firstName} {this.props.user.lastName}
                   <br />
+                  Total Score: {this.props.user.histScore}
+                  <br />
                 </div>
               </div>
             </Jumbotron>

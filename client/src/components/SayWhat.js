@@ -33,7 +33,6 @@ class SayWhat extends Component {
             this.gameData = data;
             if (this.gameData.players[this.gameData.whosTurn].id === this.myId) {
                 this.myturn = true;
-                console.log("My turn");
             }
             else {
                 this.myturn = false;
@@ -110,9 +109,6 @@ class SayWhat extends Component {
                                 </div>
                             </div>
                             <div className="col-6 right">
-                                {/* <div style={{ position: "absolute", right: 140, top: 15 }}>
-                                    <Timer />
-                                </div> */}
                                 <div className="d-flex justify-content-center">
                                     <Wheel socket={this.props.socket} />
                                 </div>

@@ -15,9 +15,10 @@ const passport = require("./server/passport");
 const app = express();
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
-var shortID = require('shortid');
-const Player = require('./classes/player.js');
-const Game = require('./classes/game.js')
+var shortID = require("shortid");
+const Player = require("./classes/player.js");
+const Game = require("./classes/game.js");
+const User = require("./server/db/models/user");
 
 const PORT = process.env.PORT || 3001;
 
@@ -74,9 +75,12 @@ if (process.env.NODE_ENV === "production") {
     "/static",
     express.static(path.join(__dirname, "client/build/static"))
   );
-  app.get(["/", "/login", "/signup", "/gameplay", "/profile", "/players"], (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build/"));
-  });
+  app.get(
+    ["/", "/login", "/signup", "/gameplay", "/profile", "/players"],
+    (req, res) => {
+      res.sendFile(path.join(__dirname, "client/build/"));
+    }
+  );
 }
 
 /* Express app ROUTING */
@@ -122,15 +126,18 @@ io.on("connection", socket => {
     syncGameDetails(game.id);
   });
 
-  socket.on("setPlayer", (data) => {
+  socket.on("setPlayer", data => {
     player.robotAntenna = data.robotAntenna;
     player.robotBody = data.robotImage;
     player.robotColor = data.robotColor;
     player.username = data.username;
-  })
+    player.dbId = data.id;
+    console.log(data);
+    console.log(player);
+  });
 
   //join a game!
-  socket.on("joinGame", (gameid) => {
+  socket.on("joinGame", gameid => {
     //If the player is currently in a game, disconnect
     if (gameExists(player)) {
       games[player.currentGame].leaveGame(player);
@@ -157,55 +164,54 @@ io.on("connection", socket => {
       if (games[player.currentGame].allReady() == true) {
         games[player.currentGame].players.forEach(eachPlayer => {
           sockets[eachPlayer.id].emit("startGame", eachPlayer.currentGame);
-        })
+        });
         games[player.currentGame].start();
       }
     }
-  })
+  });
 
   socket.on("requestUpdate", () => {
     socket.emit("recieveMyPlayerData", player);
     syncGameDetails(player.currentGame);
-  })
+  });
 
   socket.on("requestSpinWheel", () => {
     //Game exists
     if (gameExists(player)) {
       //its our turn
-      if (games[player.currentGame].getCurrentPlayerId() == player.id) 
-      {
+      if (games[player.currentGame].getCurrentPlayerId() == player.id) {
         //Game state is correct
-        if (games[player.currentGame].gameState == "Selecting Action" || games[player.currentGame].gameState == "Spinning Wheel") {
+        if (
+          games[player.currentGame].gameState == "Selecting Action" ||
+          games[player.currentGame].gameState == "Spinning Wheel"
+        ) {
           //Spin wheel
           games[player.currentGame].spinResolved = false;
           games[player.currentGame].spinCount++;
-          let angle = Math.floor(Math.random() * 359)
+          let angle = Math.floor(Math.random() * 359);
           games[player.currentGame].gameState = "Wheel Is Spinning";
           games[player.currentGame].players.forEach(eachPlayer => {
             sockets[eachPlayer.id].emit("spin", angle);
             syncGameDetails(player.currentGame);
-          })
+          });
         }
       }
     }
-  })
+  });
 
-  socket.on("spinResult", (data) => {
+  socket.on("spinResult", data => {
     //Game Exists
     if (gameExists(player)) {
-      if (games[player.currentGame].getCurrentPlayerId() === player.id) 
-      {
+      if (games[player.currentGame].getCurrentPlayerId() === player.id) {
         if (!games[player.currentGame].spinResolved) {
           sendServerMessage(player.currentGame, "The wheel landed on " + data);
           if (data == "  BANKRUPT") {
-            console.log("Bankrupt landed")
+            console.log("Bankrupt landed");
             player.cash = 0;
             games[player.currentGame].nextTurn();
-          }
-          else if (data == " LOSE TURN") {
+          } else if (data == " LOSE TURN") {
             games[player.currentGame].nextTurn();
-          }
-          else {
+          } else {
             games[player.currentGame].curentWheelValue = data;
             games[player.currentGame].gameState = "Selecting Consonant";
           }
@@ -214,11 +220,11 @@ io.on("connection", socket => {
         }
       }
     }
-  })
+  });
 
   socket.on("buyVowel", () => {
     //GameExists
-    if(gameExists(player)) {
+    if (gameExists(player)) {
       //Its my turn
       if (games[player.currentGame].getCurrentPlayerId() === player.id) {
         //GameState is correct
@@ -229,7 +235,7 @@ io.on("connection", socket => {
         }
       }
     }
-  })
+  });
 
   socket.on("solvePuzzle", () => {
     //GameExists
@@ -243,9 +249,9 @@ io.on("connection", socket => {
         }
       }
     }
-  })
+  });
 
-  socket.on("idLikeToSolveThePuzzle", (data) => {
+  socket.on("idLikeToSolveThePuzzle", data => {
     //GameExists
     if (gameExists(player)) {
       //Its my turn
@@ -253,12 +259,17 @@ io.on("connection", socket => {
         //GameState is correct
         if (games[player.currentGame].gameState == "Solving") {
           if (games[player.currentGame].puzzleGuessed(data)) {
-            sendServerMessage(player.currentGame, player.username + " tried to guess the puzzle: " + data);
+            sendServerMessage(
+              player.currentGame,
+              player.username + " tried to guess the puzzle: " + data
+            );
             sendServerMessage(player.currentGame, "They were correct!");
             roundOver();
-          }
-          else {
-            sendServerMessage(player.currentGame, player.username + " tried to guess the puzzle: " + data);
+          } else {
+            sendServerMessage(
+              player.currentGame,
+              player.username + " tried to guess the puzzle: " + data
+            );
             sendServerMessage(player.currentGame, "They were incorrect!");
             games[player.currentGame].nextTurn();
           }
@@ -266,13 +277,13 @@ io.on("connection", socket => {
         }
       }
     }
-  })
+  });
 
-  socket.on("chooseLetter", (letter) => {
+  socket.on("chooseLetter", letter => {
     //Game Exists
     if (gameExists(player)) {
       //Its my turn
-      if (games[player.currentGame].getCurrentPlayerId() == player.id) { 
+      if (games[player.currentGame].getCurrentPlayerId() == player.id) {
         //Game state is correct
         if (games[player.currentGame].gameState == "Selecting Consonant") { 
           sendServerMessage(player.currentGame, player.username + " guessed the letter: " + letter + "!");
@@ -283,20 +294,19 @@ io.on("connection", socket => {
           games[player.currentGame].gameState = "Showing Letters";
           syncGameDetails(player.currentGame);
           if (showAtIndex.length > 0) {
-            let interval = setInterval(
-              () => {
-                player.cash += parseInt(games[player.currentGame].curentWheelValue);
-                console.log(player.cash);
-                games[player.currentGame].popLetter(showAtIndex.shift());
-                syncGameDetails(player.currentGame);
-                if (showAtIndex.length <= 0) {
-                  showingLettersDone(false);
-                  clearInterval(interval);
-                }
-              }, 500
-            );
-          }
-          else {
+            let interval = setInterval(() => {
+              player.cash += parseInt(
+                games[player.currentGame].curentWheelValue
+              );
+              console.log(player.cash);
+              games[player.currentGame].popLetter(showAtIndex.shift());
+              syncGameDetails(player.currentGame);
+              if (showAtIndex.length <= 0) {
+                showingLettersDone(false);
+                clearInterval(interval);
+              }
+            }, 500);
+          } else {
             showingLettersDone(true);
           }
         }
@@ -310,24 +320,21 @@ io.on("connection", socket => {
           games[player.currentGame].gameState = "Showing Letters";
           syncGameDetails(player.currentGame);
           if (showAtIndex.length > 0) {
-            let interval = setInterval(
-              () => {
-                games[player.currentGame].popLetter(showAtIndex.shift());
-                syncGameDetails(player.currentGame);
-                if (showAtIndex.length <= 0) {
-                  showingLettersDone(false);
-                  clearInterval(interval);
-                }
-              }, 500
-            );
-          }
-          else {
+            let interval = setInterval(() => {
+              games[player.currentGame].popLetter(showAtIndex.shift());
+              syncGameDetails(player.currentGame);
+              if (showAtIndex.length <= 0) {
+                showingLettersDone(false);
+                clearInterval(interval);
+              }
+            }, 500);
+          } else {
             showingLettersDone(true);
           }
         }
       }
     }
-  })
+  });
 
   function showingLettersDone(passTurn) {
     setTimeout(() => {
@@ -350,13 +357,29 @@ io.on("connection", socket => {
 
   function roundOver() {
     console.log("RoundOver");
-    if (games[player.currentGame].round > 3) {
+    // change 0 back to 3!! TODO
+    if (games[player.currentGame].round > 0) {
       console.log("END GAME");
       games[player.currentGame].endRound();
       games[player.currentGame].endGame();
-      sendServerMessage(player.currentGame, "The game is over! " + games[player.currentGame].player[0].username + " wins!");
-    }
-    else {
+      sendServerMessage(
+        player.currentGame,
+        "The game is over! " +
+          games[player.currentGame].players[0].username +
+          " wins!"
+      );
+      games[player.currentGame].players.forEach(player => {
+        User.findByIdAndUpdate(
+          player.dbId,
+          { $inc: { histScore: player.totalCash } },
+          (err, model) => {
+            console.log(model);
+          }
+        );
+        console.log(player);
+        console.log(player.totalCash);
+      });
+    } else {
       games[player.currentGame].endRound();
       games[player.currentGame].getNewPuzzle();
     }
@@ -380,10 +403,10 @@ io.on("connection", socket => {
   }
 
   function sendServerMessage(gameId, str) {
-    let message = {name: "Server", text: str};
+    let message = { name: "Server", text: str };
     games[gameId].players.forEach(eachPlayer => {
       sockets[eachPlayer.id].emit("RecieveMessage", message);
-    })
+    });
   }
 
   socket.on("SendMessage", data => {
