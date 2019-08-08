@@ -33,10 +33,10 @@ const Profile = props => {
               <br />
               Name: {props.user.firstName} {props.user.lastName}
               <br />
-              Game Score: {props.user.gameScore}
+              {/* Game Score: {props.user.gameScore}
               <br />
               Historical Score: {props.user.histScore}
-              <br />
+              <br /> */}
             </div>
           </Jumbotron>
         </Col>

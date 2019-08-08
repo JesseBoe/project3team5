@@ -8,9 +8,9 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import AvatarSetter from "../components/PlayerAvatar/AvatarSetter";
 import Navbar from "../components/Navbar/Navbar";
+import NewAvatar from "../components/PlayerAvatar/NewAvatar";
 
 class Players extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -69,60 +69,70 @@ class Players extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>
-                <i class="fas fa-user-plus" /> <strong>Add Player</strong>
+                <i class="fas fa-user-plus" /> <strong>Edit Player</strong>
               </h1>
-            </Jumbotron>
-            <div>
-              <AvatarSetter 
-                robot={this.props.user.robot}
-                onChange={this.handleAvatarChange} 
-              />
-            </div>
-            <form>
-              <Input
-                value={this.state.firstName}
-                onChange={this.handleInputChange}
-                name="firstName"
-                placeholder="First Name"
-              />
 
-              <FormBtn
-                disabled={!(this.state.firstName)}
-                onClick={this.handleFormSubmit}
-                
-              >Save Changes
-                {/* <button>
+              <div
+                style={{
+                  display: "inline-block",
+                  marginBottom: "10px"
+                }}
+              >
+                <AvatarSetter
+                  robot={this.props.user.robot}
+                  onChange={this.handleAvatarChange}
+                />
+              </div>
+              <form>
+                <Input
+                  value={this.state.firstName}
+                  onChange={this.handleInputChange}
+                  name="firstName"
+                  placeholder="First Name"
+                />
+
+                <FormBtn
+                  disabled={!this.state.firstName}
+                  onClick={this.handleFormSubmit}
+                >
+                  Save Changes
+                  {/* <button>
                   {" "}
                   Submit player <i class="fa fa-check-square-o" />
                 </button> */}
-
-                {/* <i class="fas fa-check-square"></i> Submit Player */}
-              </FormBtn>
-            </form>
+                  {/* <i class="fas fa-check-square"></i> Submit Player */}
+                </FormBtn>
+              </form>
+            </Jumbotron>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>
-                <i class="fas fa-user-friends" /> <strong>Players</strong>
-              </h1>
+            <Jumbotron className="text-center">
+              <div
+                className="text-center"
+                style={{
+                  margin: "auto"
+                }}
+              >
+                <h1>
+                  <i class="fas fa-user-friends" /> <strong>Player Info</strong>
+                </h1>
+
+                <div
+                  style={{
+                    display: "inline-block"
+                  }}
+                >
+                  <NewAvatar
+                    RobotAntenna={this.props.user.robot.RobotAntenna}
+                    RobotColor={this.props.user.robot.RobotColor}
+                    RobotImage={this.props.user.robot.RobotImage}
+                  />
+                  <br />
+                  Name: {this.props.user.firstName} {this.props.user.lastName}
+                  <br />
+                </div>
+              </div>
             </Jumbotron>
-            {this.state.players.level ? (
-              <List>
-                {this.state.players.map(player => (
-                  <ListItem key={player._id}>
-                    <Link to={"/players/" + player._id}>
-                      <strong>
-                        <i class="fas fa-user" /> {player.firstName}:{" "}
-                        {player.position}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteplayer(player._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
           </Col>
         </Row>
       </Container>
